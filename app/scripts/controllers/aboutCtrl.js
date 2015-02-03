@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name klotskiApp.controller:MainCtrl
+ * @name klotskiApp.controller:AboutCtrl
  * @description
- * # HomeCtrl
+ * # AboutCtrl
  * Controller of the klotskiApp
  */
 angular.module('gameApp')
-  .controller('HomeCtrl', function ($scope) {
-    
-  });
+.controller('AboutCtrl', function () {
+  
+});

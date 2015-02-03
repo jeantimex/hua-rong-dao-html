@@ -8,6 +8,6 @@
  * Controller of the klotskiApp
  */
 angular.module('gameApp')
-  .controller('ContactCtrl', function ($scope) {
-    
-  });
+.controller('HomeCtrl', function () {
+  
+});

@@ -15,7 +15,8 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'gameManager'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -24,8 +25,7 @@ angular
         controller: 'HomeCtrl'
       })
       .when('/game', {
-        templateUrl: 'views/game.html',
-        controller: 'GameCtrl'
+        templateUrl: 'views/game.html'
       })
       .when('/about', {
         templateUrl: 'views/about.html',

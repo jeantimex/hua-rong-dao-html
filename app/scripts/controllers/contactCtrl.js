@@ -4,10 +4,10 @@
  * @ngdoc function
  * @name klotskiApp.controller:MainCtrl
  * @description
- * # GameCtrl
+ * # HomeCtrl
  * Controller of the klotskiApp
  */
 angular.module('gameApp')
-  .controller('GameCtrl', function ($scope) {
-    
-  });
+.controller('ContactCtrl', function () {
+  
+});
