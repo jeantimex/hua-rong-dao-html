@@ -5,7 +5,7 @@
  */
 
 angular
-.module('gameApp')
+.module('GameApp')
 .directive('tile', function () {
   return {
     restrict: 'E',

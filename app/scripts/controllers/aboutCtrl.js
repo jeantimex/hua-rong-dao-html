@@ -7,7 +7,7 @@
  * # AboutCtrl
  * Controller of the klotskiApp
  */
-angular.module('gameApp')
+angular.module('GameApp')
 .controller('AboutCtrl', function () {
   
 });

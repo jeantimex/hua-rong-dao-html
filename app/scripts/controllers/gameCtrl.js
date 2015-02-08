@@ -8,8 +8,8 @@
  * Controller of the klotskiApp
  */
 
-angular.module('gameApp')
-.controller('GameCtrl', function ($scope, $log, LevelService) {
+angular.module('GameApp')
+.controller('GameCtrl', function ($scope, $log, LevelService, KeyboardService) {
 
   $scope.level = 0;
   $scope.totalLevel = 0;
@@ -57,6 +57,14 @@ angular.module('gameApp')
       });
   };
 
+  // ------------------------------
+  //  Keyboard service
+  // ------------------------------  
+
+  KeyboardService.on(function (key) {
+    console.log(key);
+  });
+  
   // ------------------------------
   //  Initialize
   // ------------------------------

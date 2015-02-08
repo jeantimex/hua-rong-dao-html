@@ -4,19 +4,12 @@
  * @ngdoc overview
  * @name klotskiApp
  * @description
- * # gameApp
+ * # GameApp
  *
  * Main module of the application.
  */
 angular
-.module('gameApp', [
-  'ngAnimate',
-  'ngCookies',
-  'ngResource',
-  'ngRoute',
-  'ngSanitize',
-  'ngTouch'
-])
+.module('GameApp', ['ngRoute', 'Keyboard'])
 .config(function ($routeProvider) {
   $routeProvider
     .when('/', {

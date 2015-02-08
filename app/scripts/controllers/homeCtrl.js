@@ -7,7 +7,7 @@
  * # HomeCtrl
  * Controller of the klotskiApp
  */
-angular.module('gameApp')
+angular.module('GameApp')
 .controller('HomeCtrl', function () {
   
 });

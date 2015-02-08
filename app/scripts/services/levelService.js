@@ -4,7 +4,7 @@
  *
  */
 
-angular.module('gameApp')
+angular.module('GameApp')
 .service('LevelService', function ($http, $q) {
 
   var dataUrl = 'data/levels.json';
