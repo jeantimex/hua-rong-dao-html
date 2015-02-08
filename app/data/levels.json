@@ -1,0 +1,34 @@
+[
+  {
+    "title": "Level 1",
+    "tiles": [
+      {"x": 0,   "y": 0,   "width": 80,  "height": 160, "color": "#C794AF"},
+      {"x": 80,  "y": 0,   "width": 160, "height": 160, "color": "#E63A4F"},
+      {"x": 240, "y": 0,   "width": 80,  "height": 160, "color": "#2CC283"},
+      {"x": 0,   "y": 160, "width": 80,  "height": 160, "color": "#99AB43"},
+      {"x": 80,  "y": 160, "width": 160, "height": 80,  "color": "#46B6CA"},
+      {"x": 240, "y": 160, "width": 80,  "height": 160, "color": "#FDB42D"},
+      {"x": 80,  "y": 240, "width": 80,  "height": 80,  "color": "#EE7DA0"},
+      {"x": 160, "y": 240, "width": 80,  "height": 80,  "color": "#A097BD"},
+      {"x": 0,   "y": 320, "width": 80,  "height": 80,  "color": "#F98D25"},
+      {"x": 240, "y": 320, "width": 80,  "height": 80,  "color": "#76C2BE"}
+    ]
+  },
+
+  {
+    "title": "Level 2",
+    "tiles": [
+      {"x": 0,   "y": 0,   "width": 80,  "height": 160, "color": "#C794AF"},
+      {"x": 80,  "y": 0,   "width": 160, "height": 160, "color": "#E63A4F"},
+      {"x": 240, "y": 0,   "width": 80,  "height": 80,  "color": "#F98D25"},
+      {"x": 240, "y": 80,  "width": 80,  "height": 80,  "color": "#76C2BE"},
+      {"x": 0,   "y": 160, "width": 160, "height": 80,  "color": "#46B6CA"},
+      {"x": 160, "y": 160, "width": 80,  "height": 80,  "color": "#EE7DA0"},
+      {"x": 240, "y": 160, "width": 80,  "height": 80,  "color": "#A097BD"},
+      {"x": 0,   "y": 240, "width": 80,  "height": 160, "color": "#2CC283"},
+      {"x": 240, "y": 240, "width": 80,  "height": 160, "color": "#99AB43"},
+      {"x": 80,  "y": 240, "width": 160, "height": 80,  "color": "#FDB42D"}
+      
+    ]
+  }
+]

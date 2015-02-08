@@ -1,0 +1,24 @@
+/* Styles for game.html */
+
+#board {
+  width: 320px;
+  height: 400px;
+  background-color: white;
+  position: relative;
+}
+
+.tile {
+  position: absolute;
+}
+
+.tile p {
+  color: white;
+  font-size: 1em;
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+/* end */

@@ -1,3 +1,25 @@
-<div class="jumbotron" ng-controller='GameCtrl as ctrl'>
-  
+<link rel="stylesheet" href="styles/game.css">
+
+<div class="jumbotron">
+  <div id="board" class="center-block">
+    <tile ng-repeat="tile in tiles"
+          x="tile.x" 
+          y="tile.y" 
+          width="tile.width" 
+          height="tile.height" 
+          color="tile.color">
+      <p>{{$index}}</p>
+    </tile>
+  </div>
 </div>
+
+<nav>
+  <ul class="pager">
+    <li ng-class="getPreviousClass()">
+      <a ng-click="previousLevel()">Previous</a>
+    </li>
+    <li ng-class="getNextClass()">
+      <a ng-click="nextLevel()">Next</a>
+    </li>
+  </ul>
+</nav>
