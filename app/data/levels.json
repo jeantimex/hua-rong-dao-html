@@ -1,34 +1,32 @@
 [
   {
-    "title": "Level 1",
+    "title": "横刀立马",
     "tiles": [
-      {"x": 0,   "y": 0,   "width": 80,  "height": 160, "color": "#C794AF"},
-      {"x": 80,  "y": 0,   "width": 160, "height": 160, "color": "#E63A4F"},
-      {"x": 240, "y": 0,   "width": 80,  "height": 160, "color": "#2CC283"},
-      {"x": 0,   "y": 160, "width": 80,  "height": 160, "color": "#99AB43"},
-      {"x": 80,  "y": 160, "width": 160, "height": 80,  "color": "#46B6CA"},
-      {"x": 240, "y": 160, "width": 80,  "height": 160, "color": "#FDB42D"},
-      {"x": 80,  "y": 240, "width": 80,  "height": 80,  "color": "#EE7DA0"},
-      {"x": 160, "y": 240, "width": 80,  "height": 80,  "color": "#A097BD"},
-      {"x": 0,   "y": 320, "width": 80,  "height": 80,  "color": "#F98D25"},
-      {"x": 240, "y": 320, "width": 80,  "height": 80,  "color": "#76C2BE"}
+      {"type": 0, "index": 0, "pos": 1},
+      {"type": 3, "index": 0, "pos": 0},
+      {"type": 3, "index": 1, "pos": 3},
+      {"type": 3, "index": 2, "pos": 8},
+      {"type": 2, "index": 0, "pos": 9},
+      {"type": 3, "index": 3, "pos": 11},
+      {"type": 1, "index": 0, "pos": 13},
+      {"type": 1, "index": 1, "pos": 14},
+      {"type": 1, "index": 2, "pos": 16},
+      {"type": 1, "index": 3, "pos": 19}
     ]
   },
-
   {
-    "title": "Level 2",
+    "title": "指挥若定",
     "tiles": [
-      {"x": 0,   "y": 0,   "width": 80,  "height": 160, "color": "#C794AF"},
-      {"x": 80,  "y": 0,   "width": 160, "height": 160, "color": "#E63A4F"},
-      {"x": 240, "y": 0,   "width": 80,  "height": 80,  "color": "#F98D25"},
-      {"x": 240, "y": 80,  "width": 80,  "height": 80,  "color": "#76C2BE"},
-      {"x": 0,   "y": 160, "width": 160, "height": 80,  "color": "#46B6CA"},
-      {"x": 160, "y": 160, "width": 80,  "height": 80,  "color": "#EE7DA0"},
-      {"x": 240, "y": 160, "width": 80,  "height": 80,  "color": "#A097BD"},
-      {"x": 0,   "y": 240, "width": 80,  "height": 160, "color": "#2CC283"},
-      {"x": 240, "y": 240, "width": 80,  "height": 160, "color": "#99AB43"},
-      {"x": 80,  "y": 240, "width": 160, "height": 80,  "color": "#FDB42D"}
-      
+      {"type": 0, "index": 0, "pos": 1},
+      {"type": 3, "index": 0, "pos": 0},
+      {"type": 1, "index": 0, "pos": 3},
+      {"type": 1, "index": 1, "pos": 7},
+      {"type": 2, "index": 0, "pos": 8},
+      {"type": 1, "index": 2, "pos": 10},
+      {"type": 1, "index": 3, "pos": 11},
+      {"type": 3, "index": 1, "pos": 12},
+      {"type": 3, "index": 2, "pos": 15},
+      {"type": 2, "index": 1, "pos": 13}
     ]
   }
 ]

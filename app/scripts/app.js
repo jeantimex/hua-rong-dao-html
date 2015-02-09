@@ -17,6 +17,9 @@ angular
       controller: 'HomeCtrl'
     })
     .when('/game', {
+      redirectTo: '/game/0'
+    })
+    .when('/game/:level', {
       templateUrl: 'views/game.html',
       controller: 'GameCtrl'
     })
@@ -33,7 +36,8 @@ angular
     });
 })
 .controller('AppCtrl', function ($scope, $location) {
-  $scope.isActive = function (loc) { 
-    return loc === $location.path();
+  $scope.isActive = function (loc) {
+    var pattern = new RegExp(loc);
+    return pattern.test($location.path());
   };
 });

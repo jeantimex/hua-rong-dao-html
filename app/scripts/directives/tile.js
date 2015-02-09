@@ -10,23 +10,35 @@ angular
   return {
     restrict: 'E',
     link: function (scope, element, attrs) {
+      // Property map
+      var map = {
+        0: [160, 160, ['#E63A4F']],
+        1: [80,  80,  ['#EE7DA0', '#A097BD', '#F98D25', '#76C2BE']],
+        2: [160, 80,  ['#46B6CA', '#FDB42D']],
+        3: [80,  160, ['#C794AF', '#2CC283', '#99AB43', '#FDB42D']]
+      };
+      
+      var tile   = scope[attrs.tile],
+          type   = parseInt(tile.type),
+          index  = parseInt(tile.index),
+          row    = parseInt(tile.pos / 4),
+          col    = parseInt(tile.pos % 4),
+          width  = map[type][0],
+          height = map[type][1],
+          color  = map[type][2][index];
+
       element.addClass('tile');
 
-      scope.$watch(attrs.x, function (x) {
-        element.css('left', x + 'px');
-      });
-      scope.$watch(attrs.y, function (y) {
-        element.css('top', y + 'px');
-      });
-      scope.$watch(attrs.width, function (width) {
-        element.css('width', width + 'px');
-      });
-      scope.$watch(attrs.height, function (height) {
-        element.css('height', height + 'px');
-      });
-      scope.$watch(attrs.color, function (color) {
-        element.css('backgroundColor', color);
-      });
+      // Width and height
+      element.css('width', width);
+      element.css('height', height);
+
+      // X & Y
+      element.css('top', row * 80 + 'px');
+      element.css('left', col * 80 + 'px');
+
+      // Color
+      element.css('backgroundColor', color);
     }
   };
 });

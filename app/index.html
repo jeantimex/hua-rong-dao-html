@@ -24,10 +24,10 @@
     <div class="container" ng-controller="AppCtrl">
       <div class="header">
         <ul class="nav nav-pills pull-right">
-          <li ng-class="{active: isActive('/')}"><a ng-href="#/">Home</a></li>
-          <li ng-class="{active: isActive('/game')}"><a ng-href="#/game">Game</a></li>
-          <li ng-class="{active: isActive('/about')}"><a ng-href="#/about">About</a></li>
-          <li ng-class="{active: isActive('/contact')}"><a ng-href="#/contact">Contact</a></li>
+          <li ng-class="{active: isActive('^/$')}"><a ng-href="#/">Home</a></li>
+          <li ng-class="{active: isActive('^/game')}"><a ng-href="#/game">Game</a></li>
+          <li ng-class="{active: isActive('^/about')}"><a ng-href="#/about">About</a></li>
+          <li ng-class="{active: isActive('^/contact')}"><a ng-href="#/contact">Contact</a></li>
         </ul>
         <h3 class="text-muted">华容道 (Huarong Dao)</h3>
       </div>

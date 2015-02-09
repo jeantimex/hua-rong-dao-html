@@ -9,11 +9,12 @@
  */
 
 angular.module('GameApp')
-.controller('GameCtrl', function ($scope, $log, LevelService, KeyboardService) {
+.controller('GameCtrl', function ($scope, $location, $route, $routeParams, $log, LevelService, KeyboardService) {
 
-  $scope.level = 0;
+  $scope.level = ($routeParams.level || 0);
   $scope.totalLevel = 0;
   $scope.tiles = [];
+  $scope.title = '';
 
   // ------------------------------
   //  Navigation
@@ -51,6 +52,7 @@ angular.module('GameApp')
   $scope.getCurrentLevelData = function () {
     LevelService.getLevelData($scope.level)
       .then(function (data) {
+        $scope.title = data.title;
         $scope.tiles = data.tiles;
       }, function (err) {
         $log.error(err);
@@ -64,7 +66,15 @@ angular.module('GameApp')
   KeyboardService.on(function (key) {
     console.log(key);
   });
-  
+
+  // ------------------------------
+  //  Event handlers
+  // ------------------------------  
+
+  $scope.move = function (index) {
+    console.log('move: ' + index);
+  };
+
   // ------------------------------
   //  Initialize
   // ------------------------------

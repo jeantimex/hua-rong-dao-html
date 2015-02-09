@@ -1,13 +1,10 @@
 <link rel="stylesheet" href="styles/game.css">
 
+<h4 class="text-center">{{title}}</h4>
+
 <div class="jumbotron">
   <div id="board" class="center-block">
-    <tile ng-repeat="tile in tiles"
-          x="tile.x" 
-          y="tile.y" 
-          width="tile.width" 
-          height="tile.height" 
-          color="tile.color">
+    <tile ng-repeat="tile in tiles" tile="tile" ng-click="move($index)">
       <p>{{$index}}</p>
     </tile>
   </div>
