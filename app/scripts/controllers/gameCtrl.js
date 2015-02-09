@@ -9,8 +9,10 @@
  */
 
 angular.module('GameApp')
-.controller('GameCtrl', function ($scope, $location, $route, $routeParams, $log, LevelService, KeyboardService) {
+.controller('GameCtrl', 
+  function ($scope, $location, $route, $routeParams, $log, LevelService, KeyboardService, TileService) {
 
+  $scope.levelData = [];
   $scope.level = ($routeParams.level || 0);
   $scope.totalLevel = 0;
   $scope.tiles = [];
@@ -30,33 +32,35 @@ angular.module('GameApp')
 
   $scope.nextLevel = function () {
     $scope.level++;
-    $scope.getCurrentLevelData();
+    getCurrentLevelData();
   };
 
   $scope.previousLevel = function () {
     $scope.level--;
-    $scope.getCurrentLevelData();
+    getCurrentLevelData();
   };
 
   // ------------------------------
   //  Level service
   // ------------------------------
 
-  LevelService.getTotalLevel()
+  LevelService.getLevelData()
     .then(function (data) {
-      $scope.totalLevel = data;
+      $scope.levelData = data;
+      $scope.totalLevel = data.length;
+
+      getCurrentLevelData();
     }, function (err) {
       $log.error(err);
     });
 
-  $scope.getCurrentLevelData = function () {
-    LevelService.getLevelData($scope.level)
-      .then(function (data) {
-        $scope.title = data.title;
-        $scope.tiles = data.tiles;
-      }, function (err) {
-        $log.error(err);
-      });
+  var getCurrentLevelData = function () {
+    var data = $scope.levelData[$scope.level];
+    
+    $scope.title = data.title;
+    $scope.tiles = data.tiles;
+
+    TileService.init($scope.tiles);
   };
 
   // ------------------------------
@@ -71,14 +75,8 @@ angular.module('GameApp')
   //  Event handlers
   // ------------------------------  
 
-  $scope.move = function (index) {
-    console.log('move: ' + index);
+  $scope.moveTile = function (tile) {
+    TileService.moveTile(tile);
   };
-
-  // ------------------------------
-  //  Initialize
-  // ------------------------------
-
-  $scope.getCurrentLevelData();
 
 });

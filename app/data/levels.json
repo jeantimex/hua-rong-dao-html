@@ -2,7 +2,7 @@
   {
     "title": "横刀立马",
     "tiles": [
-      {"type": 0, "index": 0, "pos": 1},
+      {"type": 9, "index": 0, "pos": 1},
       {"type": 3, "index": 0, "pos": 0},
       {"type": 3, "index": 1, "pos": 3},
       {"type": 3, "index": 2, "pos": 8},
@@ -17,7 +17,7 @@
   {
     "title": "指挥若定",
     "tiles": [
-      {"type": 0, "index": 0, "pos": 1},
+      {"type": 9, "index": 0, "pos": 1},
       {"type": 3, "index": 0, "pos": 0},
       {"type": 1, "index": 0, "pos": 3},
       {"type": 1, "index": 1, "pos": 7},

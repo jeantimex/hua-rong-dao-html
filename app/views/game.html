@@ -4,7 +4,7 @@
 
 <div class="jumbotron">
   <div id="board" class="center-block">
-    <tile ng-repeat="tile in tiles" tile="tile" ng-click="move($index)">
+    <tile ng-repeat="tile in tiles" tile="tile" ng-click="moveTile(tile)">
       <p>{{$index}}</p>
     </tile>
   </div>

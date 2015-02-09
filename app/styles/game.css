@@ -9,6 +9,7 @@
 
 .tile {
   position: absolute;
+  /*transition: all 0.2s ease-out;*/
 }
 
 .tile p {
@@ -16,9 +17,8 @@
   font-size: 1em;
   position: relative;
   top: 50%;
-  -webkit-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
-          transform: translateY(-50%);
+  user-select: none;
+  transform: translateY(-50%);
 }
 
 /* end */

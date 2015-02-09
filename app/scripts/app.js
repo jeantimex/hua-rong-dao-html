@@ -9,7 +9,7 @@
  * Main module of the application.
  */
 angular
-.module('GameApp', ['ngRoute', 'Keyboard'])
+.module('GameApp', ['ngRoute', 'ngAnimate', 'Keyboard'])
 .config(function ($routeProvider) {
   $routeProvider
     .when('/', {
