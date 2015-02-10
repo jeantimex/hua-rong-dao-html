@@ -60,7 +60,7 @@ angular.module('GameApp')
    * Move tile
    */
   this.moveTile = function (tile) {
-    tile.pos++;
+    
   };
 
 });
