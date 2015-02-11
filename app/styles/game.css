@@ -9,7 +9,7 @@
 
 .tile {
   position: absolute;
-  /*transition: all 0.2s ease-out;*/
+  transition: all 0.1s ease-out;
 }
 
 .tile p {
