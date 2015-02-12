@@ -82,7 +82,7 @@ angular.module('GameApp')
 
     var i;
 
-    // step 1. Check all directions and find out the possible positions
+    // step 1. Get all unvisited positions around the tile
     var positions = this.getUnvisitedPositions(tile);
     //console.log('----------------------');
     //console.log('positions: ' + positions);
@@ -104,6 +104,8 @@ angular.module('GameApp')
     if (this.stack.length > 0) {
       var index = -1;
 
+      // if current available positions are in the stack
+      // then we will go to that position
       for (i = positions.length - 1; i >= 0; i--) {
         index = this.stack.indexOf(positions[i]);
         if (index >= 0) {
@@ -111,17 +113,23 @@ angular.module('GameApp')
         }
       }
 
-      this.cleanTile(tile);
+      // finally we move the position
+      // move out current position
+      this.markTile(tile, 0);
 
       if (index >= 0) {
+        // add current tile to the path
         this.path.push(tile.pos);
+        // move current tile to stack[index]
         tile.pos = this.stack[index];
         this.stack.splice(index, 1);
       } else {
+        // trace back
         tile.pos = this.path.pop();
       }
 
-      this.markTile(tile);
+      // move in current position
+      this.markTile(tile, tile.type);
     }
 
     //console.log('path: ' + this.path);
@@ -151,26 +159,105 @@ angular.module('GameApp')
         row = parseInt(pos / 4),
         col = parseInt(pos % 4);
 
-    // up
-    if (row > 0 && this.grid[row - 1][col] === 0) {
-      res.push(this.calPos(row - 1, col));
+    switch (tile.type) {
+      // type 1
+      case 1:
+        // up
+        if (row > 0 && this.grid[row - 1][col] === 0) {
+          res.push(this.calPos(row - 1, col));
+        }
+
+        // right
+        if (col < 3 && this.grid[row][col + 1] === 0) {
+          res.push(this.calPos(row, col + 1));
+        }
+
+        // left
+        if (col > 0 && this.grid[row][col - 1] === 0) {
+          res.push(this.calPos(row, col - 1));
+        }
+
+        // down
+        if (row < 4 && this.grid[row + 1][col] === 0) {
+          res.push(this.calPos(row + 1, col));
+        }
+
+        break;
+
+      // type 2
+      case 2:
+        // up
+        if (row > 0 && this.grid[row - 1][col] === 0 && this.grid[row - 1][col + 1] === 0) {
+          res.push(this.calPos(row - 1, col));
+        }
+
+        // right
+        if (col < 2 && this.grid[row][col + 2] === 0) {
+          res.push(this.calPos(row, col + 1));
+        }
+
+        // left
+        if (col > 0 && this.grid[row][col - 1] === 0) {
+          res.push(this.calPos(row, col - 1));
+        }
+
+        // down
+        if (row < 4 && this.grid[row + 1][col] === 0 && this.grid[row + 1][col + 1] === 0) {
+          res.push(this.calPos(row + 1, col));
+        }
+
+        break;
+
+      // type 3
+      case 3:
+        // up
+        if (row > 0 && this.grid[row - 1][col] === 0) {
+          res.push(this.calPos(row - 1, col));
+        }
+
+        // right
+        if (col < 3 && this.grid[row][col + 1] === 0 && this.grid[row + 1][col + 1] === 0) {
+          res.push(this.calPos(row, col + 1));
+        }
+
+        // left
+        if (col > 0 && this.grid[row][col - 1] === 0 && this.grid[row + 1][col - 1] === 0) {
+          res.push(this.calPos(row, col - 1));
+        }
+
+        // down
+        if (row < 3 && this.grid[row + 2][col] === 0) {
+          res.push(this.calPos(row + 1, col));
+        }
+
+        break;
+
+      // type 9
+      case 9:
+        // up
+        if (row > 0 && this.grid[row - 1][col] === 0 && this.grid[row - 1][col + 1] === 0) {
+          res.push(this.calPos(row - 1, col));
+        }
+
+        // right
+        if (col < 2 && this.grid[row][col + 2] === 0 && this.grid[row + 1][col + 2] === 0) {
+          res.push(this.calPos(row, col + 1));
+        }
+
+        // left
+        if (col > 0 && this.grid[row][col - 1] === 0 && this.grid[row + 1][col - 1] === 0) {
+          res.push(this.calPos(row, col - 1));
+        }
+
+        // down
+        if (row < 3 && this.grid[row + 2][col] === 0 && this.grid[row + 2][col + 1] === 0) {
+          res.push(this.calPos(row + 1, col));
+        }
+
+        break;
     }
 
-    // right
-    if (col < 3 && this.grid[row][col + 1] === 0) {
-      res.push(this.calPos(row, col + 1));
-    }
-
-    // left
-    if (col > 0 && this.grid[row][col - 1] === 0) {
-      res.push(this.calPos(row, col - 1));
-    }
-
-    // down
-    if (row < 4 && this.grid[row + 1][col] === 0) {
-      res.push(this.calPos(row + 1, col));
-    }
-
+    //
     for (var i = res.length - 1; i >= 0; i--) {
       if (this.visited.hasOwnProperty(res[i])) {
         res.splice(i, 1);
@@ -180,18 +267,37 @@ angular.module('GameApp')
     return res;
   };
 
-  this.cleanTile = function (tile) {
+  /**
+   *
+   * @param tile
+   * @param type
+   */
+  this.markTile = function (tile, type) {
     var row = parseInt(tile.pos / 4),
         col = parseInt(tile.pos % 4);
 
-    this.grid[row][col] = 0;
-  };
+    switch (tile.type) {
+      case 1:
+        this.grid[row][col] = type;
+        break;
 
-  this.markTile = function (tile) {
-    var row = parseInt(tile.pos / 4),
-        col = parseInt(tile.pos % 4);
+      case 2:
+        this.grid[row][col] = type;
+        this.grid[row][col + 1] = type;
+        break;
 
-    this.grid[row][col] = tile.type;
+      case 3:
+        this.grid[row][col] = type;
+        this.grid[row + 1][col] = type;
+        break;
+
+      case 9:
+        this.grid[row][col] = type;
+        this.grid[row][col + 1] = type;
+        this.grid[row + 1][col] = type;
+        this.grid[row + 1][col + 1] = type;
+        break;
+    }
   };
 
 });
