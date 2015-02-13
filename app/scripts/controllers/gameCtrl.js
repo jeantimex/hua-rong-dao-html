@@ -32,13 +32,17 @@ angular.module('GameApp')
   };
 
   $scope.nextLevel = function () {
-    $scope.level++;
-    getCurrentLevelData();
+    if ($scope.level < $scope.totalLevel - 1) {
+      $scope.level++;
+      getCurrentLevelData();
+    }
   };
 
   $scope.previousLevel = function () {
-    $scope.level--;
-    getCurrentLevelData();
+    if ($scope.level > 0) {
+      $scope.level--;
+      getCurrentLevelData();
+    }
   };
 
   $scope.resetLevel = function () {
