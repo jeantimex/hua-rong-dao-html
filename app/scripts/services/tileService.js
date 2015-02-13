@@ -5,7 +5,10 @@
  */
 
 angular.module('GameApp')
-.service('TileService', function () {
+.service('TileService', function ($rootScope) {
+
+  var ROW = 5;
+  var COL = 4;
 
   this.grid = [];
   this.path = [];
@@ -17,57 +20,70 @@ angular.module('GameApp')
    * Initialize the grid
    */
   this.init = function (tiles) {
+    this.grid = this.getGrid(tiles);
+    this.lastTile = null;
+    this.reset();
+  };
+
+  /**
+   *
+   * @param tiles
+   * @returns {Array}
+   */
+  this.getGrid = function (tiles) {
+    var res = [];
     var i, j = 0;
 
-    this.grid = [];
-
-    this.lastTile = null;
-
-    this.reset();
-
-    for (i = 0; i < 5; i++) {
-      this.grid[i] = [];
-      for (j = 0; j < 4; j++) {
-        this.grid[i][j] = 0;
+    for (i = 0; i < ROW; i++) {
+      res[i] = [];
+      for (j = 0; j < COL; j++) {
+        res[i][j] = 0;
       }
     }
 
     for (i = 0; i < tiles.length; i++) {
       var tile   = tiles[i],
-          type   = parseInt(tile.type),
-          row    = parseInt(tile.pos / 4),
-          col    = parseInt(tile.pos % 4);
+        type   = parseInt(tile.type),
+        row    = parseInt(tile.pos / 4),
+        col    = parseInt(tile.pos % 4);
 
-      this.grid[row][col] = type;
+      res[row][col] = type;
 
       switch (tile.type) {
         case 9:
-          this.grid[row][col + 1] = type;
-          this.grid[row + 1][col] = type;
-          this.grid[row + 1][col + 1] = type;
+          res[row][col + 1] = type;
+          res[row + 1][col] = type;
+          res[row + 1][col + 1] = type;
           break;
 
         case 2:
-          this.grid[row][col + 1] = type;
+          res[row][col + 1] = type;
           break;
 
         case 3:
-          this.grid[row + 1][col] = type;
+          res[row + 1][col] = type;
           break;
       }
     }
+
+    return res;
   };
 
+  /**
+   *
+   */
   this.reset = function () {
     this.path = [];
     this.stack = [];
     this.visited = {};
-
   };
 
-  this.printGrid = function () {
-    for (var i = 0; i < 5; i++) {
-      console.log(this.grid[i]);
+  /**
+   *
+   */
+  this.printGrid = function (grid) {
+    for (var i = 0; i < ROW; i++) {
+      console.log(grid[i]);
     }
   };
 
@@ -84,8 +100,6 @@ angular.module('GameApp')
 
     // step 1. Get all unvisited positions around the tile
     var positions = this.getUnvisitedPositions(tile);
-    //console.log('----------------------');
-    //console.log('positions: ' + positions);
 
     if (!this.visited.hasOwnProperty(tile.pos)) {
       for (i = 0; i < positions.length; i++) {
@@ -97,9 +111,6 @@ angular.module('GameApp')
       // mark current pos as visited
       this.visited[tile.pos] = true;
     }
-
-    //console.log('visited: ' + this.visited);
-    //console.log('stack: ' + this.stack);
 
     if (this.stack.length > 0) {
       var index = -1;
@@ -132,17 +143,23 @@ angular.module('GameApp')
       this.markTile(tile, tile.type);
     }
 
-    //console.log('path: ' + this.path);
-    //console.log('stack: ' + this.stack);
+    if (tile.type === 9 && tile.pos === 13) {
+      $rootScope.$broadcast('levelComplete');
+    }
 
     positions = this.getUnvisitedPositions(tile);
-    //console.log('positions: ' + positions);
 
     if (positions.length === 0 && this.stack.length === 0) {
       this.reset();
     }
   };
 
+  /**
+   *
+   * @param row
+   * @param col
+   * @returns {*}
+   */
   this.calPos = function (row, col) {
     return row * 4 + col;
   };
@@ -257,7 +274,7 @@ angular.module('GameApp')
         break;
     }
 
-    //
+    // remove visited position(s)
     for (var i = res.length - 1; i >= 0; i--) {
       if (this.visited.hasOwnProperty(res[i])) {
         res.splice(i, 1);
@@ -298,6 +315,48 @@ angular.module('GameApp')
         this.grid[row + 1][col + 1] = type;
         break;
     }
+  };
+
+  // --------------------------------------
+  //  Solve Puzzle Algorithm
+  // --------------------------------------
+
+  /**
+   *
+   * @param tiles
+   */
+  this.solve = function (tiles) {
+    // get grid
+    var grid = this.getGrid(tiles);
+    this.printGrid(grid);
+
+    // get key
+    var key = this.getKey(grid);
+    console.log(key);
+  };
+
+  /**
+   *
+   * @param grid
+   */
+  this.getKey = function (grid) {
+    var i, j, k = -1, c = 0, key = 0;
+
+    for (i = 0; i < ROW; i++) {
+      for (j = 0; j < COL; j++) {
+        var type = grid[i][j];
+        var pos = i * COL + j;
+
+        if (type === 9 && k === -1) {
+          k = pos;
+          key += pos * Math.pow(2, 32);
+        } else if (type != 9) {
+          key += type * Math.pow(2, (c++) * 2);
+        }
+      }
+    }
+
+    return key;
   };
 
 });

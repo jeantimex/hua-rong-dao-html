@@ -9,7 +9,7 @@
  * Main module of the application.
  */
 angular
-.module('GameApp', ['ngRoute', 'ngAnimate', 'Keyboard'])
+.module('GameApp', ['ngRoute', 'Keyboard'])
 .config(function ($routeProvider) {
   $routeProvider
     .when('/', {
@@ -17,9 +17,6 @@ angular
       controller: 'HomeCtrl'
     })
     .when('/game', {
-      redirectTo: '/game/0'
-    })
-    .when('/game/:level', {
       templateUrl: 'views/game.html',
       controller: 'GameCtrl'
     })

@@ -9,11 +9,12 @@
  */
 
 angular.module('GameApp')
-.controller('GameCtrl', 
+.controller('GameCtrl',
   function ($scope, $location, $route, $routeParams, $log, LevelService, KeyboardService, TileService) {
 
   $scope.levelData = [];
-  $scope.level = ($routeParams.level || 0);
+  //$scope.level = ($routeParams.level || 0);
+  $scope.level = 0;
   $scope.totalLevel = 0;
   $scope.tiles = [];
   $scope.title = '';
@@ -40,6 +41,14 @@ angular.module('GameApp')
     getCurrentLevelData();
   };
 
+  $scope.resetLevel = function () {
+    getCurrentLevelData();
+  };
+
+  $scope.help = function () {
+    TileService.solve($scope.tiles);
+  };
+
   // ------------------------------
   //  Level service
   // ------------------------------
@@ -55,8 +64,8 @@ angular.module('GameApp')
     });
 
   var getCurrentLevelData = function () {
-    var data = $scope.levelData[$scope.level];
-    
+    var data = angular.copy($scope.levelData[$scope.level]);
+
     $scope.title = data.title;
     $scope.tiles = data.tiles;
 
@@ -65,7 +74,7 @@ angular.module('GameApp')
 
   // ------------------------------
   //  Keyboard service
-  // ------------------------------  
+  // ------------------------------
 
   KeyboardService.on(function (key) {
     console.log(key);
@@ -73,10 +82,14 @@ angular.module('GameApp')
 
   // ------------------------------
   //  Event handlers
-  // ------------------------------  
+  // ------------------------------
 
   $scope.moveTile = function (tile) {
     TileService.moveTile(tile);
   };
+
+  $scope.$on('levelComplete', function(event) {
+
+  });
 
 });
