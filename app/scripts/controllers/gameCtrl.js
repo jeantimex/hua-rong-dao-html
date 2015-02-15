@@ -10,14 +10,18 @@
 
 angular.module('GameApp')
 .controller('GameCtrl',
-  function ($scope, $location, $route, $routeParams, $log, LevelService, KeyboardService, TileService) {
+  function ($scope, $location, $route, $routeParams, $timeout, $log,
+            LevelService, KeyboardService, TileService) {
 
   $scope.levelData = [];
-  //$scope.level = ($routeParams.level || 0);
   $scope.level = 0;
   $scope.totalLevel = 0;
   $scope.tiles = [];
   $scope.title = '';
+
+  $scope.aiSteps = [];
+  $scope.aiTimeout = null;
+  $scope.aiStepCount = 0;
 
   // ------------------------------
   //  Navigation
@@ -50,8 +54,30 @@ angular.module('GameApp')
   };
 
   $scope.help = function () {
-    TileService.solve($scope.tiles);
+    TileService.solve($scope.tiles)
+      .then(function (data) {
+        $scope.aiSteps = data;
+        $scope.aiStepCount = 0;
+        $scope.aiTimeout = $timeout($scope.onAiMove ,1000);
+      }, function (err) {
+        $log.error(err);
+      });
   };
+
+  $scope.onAiMove = function () {
+    var step = $scope.aiSteps[$scope.aiStepCount];
+
+    $scope.tiles[step.id].pos += step.pos;
+
+    if ($scope.aiStepCount < $scope.aiSteps.length - 1) {
+      $scope.aiStepCount++;
+      $scope.aiTimeout = $timeout($scope.onAiMove, 1000);
+    }
+  };
+
+  $scope.stopAi = function(){
+    $timeout.cancel($scope.aiTimeout);
+  }
 
   // ------------------------------
   //  Level service

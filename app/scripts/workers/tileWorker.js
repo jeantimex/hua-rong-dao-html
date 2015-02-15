@@ -9,24 +9,31 @@ self.isObject = function (val) {
   if (val === null) {
     return false;
   }
+
   return ((typeof val === 'function') || (typeof val === 'object'));
 };
 
 self.copy = function (obj) {
   if (Object.prototype.toString.call(obj) === '[object Array]') {
     var out = [], i = 0, len = obj.length;
+
     for ( ; i < len; i++ ) {
       out[i] = arguments.callee(obj[i]);
     }
+
     return out;
   }
+
   if (typeof obj === 'object') {
     var out = {}, i;
+
     for ( i in obj ) {
       out[i] = arguments.callee(obj[i]);
     }
+
     return out;
   }
+
   return obj;
 };
 
@@ -247,7 +254,8 @@ self.getGrid = function (tiles) {
  *
  * @param grid
  */
-self.getKey = function (grid) {
+self.getKey = function (tiles) {
+  var grid = this.getGrid(tiles);
   var i, j, k = -1, c = 0, key = 0;
 
   for (i = 0; i < ROW; i++) {
@@ -267,8 +275,51 @@ self.getKey = function (grid) {
   return key;
 };
 
+self.addPath = function (path, id, pos) {
+  var res = self.copy(path);
+  if (res.length > 0 && res[res.length - 1].id === id && res[res.length - 1].pos === pos) {
+    res[res.length - 1].pos += pos;
+  } else {
+    res.push({'id': id, 'pos': pos});
+  }
+  return res;
+};
+
+self.getStepCount = function (path) {
+  var count = 0;
+  var j = -1;
+
+  for (var i = 0; i < path.length; i++) {
+    var step = path[i];
+    if (step.id != j) {
+      j = step.id;
+      count++;
+    }
+  }
+
+  return count;
+};
+
+self.getBestResult = function (paths) {
+  var res = null;
+  var min = Math.pow(2, 53);
+
+  for (var i = 0; i < paths.length; i++) {
+    var count = self.getStepCount(paths[i]);
+    if (count < min) {
+      res = paths[i];
+      min = count;
+    }
+  }
+
+  console.log(min);
+
+  return res;
+};
+
 self.addEventListener('message', function(e) {
-  var result = null;
+  var paths = [];
+  var result = [];
   var tiles = e.data;
 
   var visited = {};
@@ -277,7 +328,8 @@ self.addEventListener('message', function(e) {
 
   // Initial state
   var grid;
-  var key = self.getKey(self.getGrid(tiles));
+  var path;
+  var key = self.getKey(tiles);
   visited[key] = true;
 
   queue.push({
@@ -298,8 +350,7 @@ self.addEventListener('message', function(e) {
 
       // check if it's complete
       if (self.pass(state.tiles)) {
-        result = state.path;
-        break;
+        paths.push(self.copy(state.path));
       }
 
       // generate every possible state by each tile
@@ -309,77 +360,69 @@ self.addEventListener('message', function(e) {
         // up
         if (self.canMoveUp(tile, grid)) {
           tile.pos -= 4;
-          state.path.push(tile.id + ' up');
-
-          key = self.getKey(self.getGrid(state.tiles));
+          key = self.getKey(state.tiles);
 
           if (!visited.hasOwnProperty(key)) {
             visited[key] = true;
+
             queue.push({
               tiles: self.copy(state.tiles),
-              path: self.copy(state.path)
+              path: self.addPath(state.path, tile.id, -4)
             });
           }
 
           tile.pos += 4;
-          state.path.pop();
         }
 
         // down
         if (self.canMoveDown(tile, grid)) {
           tile.pos += 4;
-          state.path.push(tile.id + ' down');
-
-          key = self.getKey(self.getGrid(state.tiles));
+          key = self.getKey(state.tiles);
 
           if (!visited.hasOwnProperty(key)) {
             visited[key] = true;
+
             queue.push({
               tiles: self.copy(state.tiles),
-              path: self.copy(state.path)
+              path: self.addPath(state.path, tile.id, 4)
             });
           }
 
           tile.pos -= 4;
-          state.path.pop();
         }
 
         // left
         if (self.canMoveLeft(tile, grid)) {
           tile.pos -= 1;
-          state.path.push(tile.id + ' left');
-
-          key = self.getKey(self.getGrid(state.tiles));
+          key = self.getKey(state.tiles);
 
           if (!visited.hasOwnProperty(key)) {
             visited[key] = true;
+
             queue.push({
               tiles: self.copy(state.tiles),
-              path: self.copy(state.path)
+              path: self.addPath(state.path, tile.id, -1)
             });
           }
 
           tile.pos += 1;
-          state.path.pop();
         }
 
         // right
         if (self.canMoveRight(tile, grid)) {
           tile.pos += 1;
-          state.path.push(tile.id + ' right');
-
-          key = self.getKey(self.getGrid(state.tiles));
+          key = self.getKey(state.tiles);
 
           if (!visited.hasOwnProperty(key)) {
             visited[key] = true;
+
             queue.push({
               tiles: self.copy(state.tiles),
-              path: self.copy(state.path)
+              path: self.addPath(state.path, tile.id, 1)
             });
           }
 
           tile.pos -= 1;
-          state.path.pop();
         }
       }
 
@@ -389,6 +432,9 @@ self.addEventListener('message', function(e) {
       }
     }
   }
+
+  // find the minimum one
+  result = self.getBestResult(paths);
 
   postMessage(result);
 

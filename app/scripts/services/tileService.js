@@ -23,6 +23,7 @@ angular.module('GameApp')
     this.grid = this.getGrid(tiles);
     this.lastTile = null;
     this.reset();
+    this.aiMode = false;
   };
 
   /**
@@ -330,7 +331,6 @@ angular.module('GameApp')
     var defer = $q.defer();
 
     worker.addEventListener('message', function(e) {
-      console.log('Worker said: ', e.data);
       defer.resolve(e.data);
     }, false);
 
