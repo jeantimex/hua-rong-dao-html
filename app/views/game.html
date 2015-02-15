@@ -20,7 +20,11 @@
       <a ng-click="nextLevel()"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
     </li>
     <li>
-      <a ng-click="help()"><span class="glyphicon glyphicon-knight" aria-hidden="true"></span></a>
+      <a ng-click="playAi()"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></a>
     </li>
+    <li>
+      <a ng-click="stopAi()"><span class="glyphicon glyphicon-stop" aria-hidden="true"></span></a>
+    </li>
+    <li class="pull-right">{{currentStep}}</li>
   </ul>
 </nav>

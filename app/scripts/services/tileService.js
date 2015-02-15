@@ -14,14 +14,12 @@ angular.module('GameApp')
   this.path = [];
   this.stack = [];
   this.visited = {};
-  this.lastTile = null;
 
   /**
    * Initialize the grid
    */
   this.init = function (tiles) {
     this.grid = this.getGrid(tiles);
-    this.lastTile = null;
     this.reset();
     this.aiMode = false;
   };
@@ -92,11 +90,6 @@ angular.module('GameApp')
    * Move tile
    */
   this.moveTile = function (tile) {
-    if (tile !== this.lastTile) {
-      this.reset();
-    }
-    this.lastTile = tile;
-
     var i;
 
     // step 1. Get all unvisited positions around the tile
@@ -330,7 +323,7 @@ angular.module('GameApp')
     var worker = new Worker('scripts/workers/tileWorker.js');
     var defer = $q.defer();
 
-    worker.addEventListener('message', function(e) {
+    worker.addEventListener('message', function (e) {
       defer.resolve(e.data);
     }, false);
 
