@@ -32,7 +32,7 @@ angular.module('GameApp')
   var aiSteps = [];
   var aiStepCount = 0;
 
-  var LEVEL_VIEW_TITLE = '选择关卡(Select a level)';
+  var LEVEL_VIEW_TITLE = 'Select a level';
 
   // UI related
   $scope.title = '';

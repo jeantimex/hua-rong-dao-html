@@ -42,6 +42,15 @@ a.thumbnail .caption p {
   font-size: 1em !important;
 }
 
+span.title {
+  font-size: 1.5em;
+  text-decoration: none;
+}
+
+.row {
+  padding: 10px;
+}
+
 #board {
   width: 320px;
   height: 400px;
