@@ -87,6 +87,17 @@ angular.module('GameApp')
   };
 
   /**
+   *
+   * @param tile
+   * @param pos
+   */
+  this.moveTileByPos = function (tile, pos) {
+    this.markTile(tile, 0);
+    tile.pos += pos;
+    this.markTile(tile, tile.type);
+  };
+
+  /**
    * Move tile
    */
   this.moveTile = function (tile) {

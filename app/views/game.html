@@ -1,28 +1,38 @@
-<h4 class="text-center">{{title}}</h4>
+<h4 class="text-center">{{getTitle()}}</h4>
 
 <div class="jumbotron">
-  <div id="board" class="center-block">
+  <div id="board" class="center-block" ng-show="isGameView()">
     <tile ng-repeat="tile in tiles" tile="tile" ng-click="moveTile(tile)">
       <p>{{$index}}</p>
     </tile>
   </div>
+
+  <div id="levels" ng-show="isLevelsView()">
+    <div class="row" ng-repeat="row in levelGrid">
+      <div class="col-md-5" ng-repeat="level in row">
+        <a class="thumbnail" ng-click="selectLevel(level)">
+          <img ng-src="images/thumbnails/{{level.title}}.png" >
+          <div class="caption">
+            <p>{{level.title}}</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
 </div>
 
-<nav>
+<nav ng-show="isGameView()">
   <ul class="pager">
     <li>
-      <a ng-click="resetLevel()"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span></a>
-    </li>
-    <li ng-class="getPreviousClass()">
-      <a ng-click="previousLevel()"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>
-    </li>
-    <li ng-class="getNextClass()">
-      <a ng-click="nextLevel()"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+      <a ng-click="back()"><span class="glyphicon glyphicon-th" aria-hidden="true"></span></a>
     </li>
     <li>
+      <a ng-click="reset()"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span></a>
+    </li>
+    <li ng-show="isUserMode()">
       <a ng-click="playAi()"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></a>
     </li>
-    <li>
+    <li ng-show="isAiMode()">
       <a ng-click="stopAi()"><span class="glyphicon glyphicon-stop" aria-hidden="true"></span></a>
     </li>
     <li class="pull-right">{{currentStep}}</li>

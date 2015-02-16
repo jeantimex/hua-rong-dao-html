@@ -11,117 +11,165 @@
 angular.module('GameApp')
 .controller('GameCtrl',
   function ($scope, $location, $route, $routeParams, $timeout, $log,
-            LevelService, KeyboardService, TileService) {
+            LevelService, TileService) {
 
+  // Define view states
+  var VIEW_GAME = 0,
+      VIEW_LEVELS = 1;
+
+  // Define game modes
   var MODE_USER_PLAY = 0,
-      MODE_AI_LOADING = 1,
-      MODE_AI_PLAY = 2;
+      MODE_AI_PLAY = 1;
 
-  $scope.levelData = [];
-  $scope.level = 0;
-  $scope.totalLevel = 0;
-  $scope.tiles = [];
+  // Define game logic variables
+  var lastTile = null;
+  var currentLevel = null;
+  var currentView = VIEW_LEVELS;
+  var currentMode = MODE_USER_PLAY;
+
+  // AI related
+  var aiTimeout = null;
+  var aiSteps = [];
+  var aiStepCount = 0;
+
+  var LEVEL_VIEW_TITLE = '选择关卡(Select a level)';
+
+  // UI related
   $scope.title = '';
+  $scope.tiles = [];
+  $scope.levelGrid = [];
   $scope.currentStep = 0;
-  $scope.lastTile = null;
-
-  $scope.aiSteps = [];
-  $scope.aiTimeout = null;
-  $scope.aiStepCount = 0;
-
-  $scope.mode = MODE_USER_PLAY;
 
   // ------------------------------
-  //  Navigation
+  //  UI: Get title
   // ------------------------------
 
-  $scope.getNextClass = function () {
-    return $scope.level < $scope.totalLevel - 1 ? '' : 'disabled';
-  };
-
-  $scope.getPreviousClass = function () {
-    return $scope.level > 0 ? '' : 'disabled';
-  };
-
-  $scope.nextLevel = function () {
-    if ($scope.level < $scope.totalLevel - 1) {
-      $scope.stopAi();
-      $scope.mode = MODE_USER_PLAY;
-
-      $scope.level++;
-      getCurrentLevelData();
+  $scope.getTitle = function () {
+    if (currentView === VIEW_GAME) {
+      return $scope.title;
+    } else {
+      return LEVEL_VIEW_TITLE;
     }
   };
 
-  $scope.previousLevel = function () {
-    if ($scope.level > 0) {
-      $scope.stopAi();
-      $scope.mode = MODE_USER_PLAY;
+  // ------------------------------
+  //  UI: ng-show/ng-hide
+  // ------------------------------
 
-      $scope.level--;
-      getCurrentLevelData();
-    }
+  $scope.isGameView = function () {
+    return currentView === VIEW_GAME;
   };
 
-  $scope.resetLevel = function () {
+  $scope.isLevelsView = function () {
+    return currentView === VIEW_LEVELS;
+  };
+
+  $scope.isUserMode = function () {
+    return currentMode === MODE_USER_PLAY;
+  };
+
+  $scope.isAiMode = function () {
+    return currentMode === MODE_AI_PLAY;
+  };
+
+  // ------------------------------
+  //  UI: ng-click handlers
+  // ------------------------------
+
+  var setLevelData = function (level) {
+    var data = angular.copy(level);
+
+    $scope.title = data.title;
+    $scope.tiles = data.tiles;
+
+    TileService.init(data.tiles);
+  };
+
+  $scope.back = function () {
+    $scope.reset();
+    currentView = VIEW_LEVELS;
+  };
+
+  $scope.selectLevel = function (level) {
+    currentView = VIEW_GAME;
+    currentLevel = angular.copy(level);
+
+    $scope.reset();
+  };
+
+  $scope.reset = function () {
     $scope.stopAi();
-    $scope.mode = MODE_USER_PLAY;
     $scope.currentStep = 0;
-    getCurrentLevelData();
+
+    setLevelData(currentLevel);
   };
+
+  $scope.moveTile = function (tile) {
+    if (currentMode === MODE_USER_PLAY) {
+      countStep(tile);
+      TileService.moveTile(tile);
+    }
+  };
+
+  // ------------------------------
+  //  AI logic
+  // ------------------------------
 
   $scope.playAi = function () {
-    if ($scope.mode != MODE_USER_PLAY) {
+    if (currentMode != MODE_USER_PLAY) {
       return;
     }
-
-    $scope.mode = MODE_AI_LOADING;
+    currentMode = MODE_AI_PLAY;
 
     TileService.solve($scope.tiles)
       .then(function (data) {
-        if (angular.isArray(data)) {
-          $scope.mode = MODE_AI_PLAY;
-          $scope.aiSteps = data;
-          $scope.aiStepCount = 0;
-          $scope.aiTimeout = $timeout($scope.onAiMove, 1000);
+        if (angular.isArray(data) && currentMode === MODE_AI_PLAY) {
+          aiSteps = data;
+          aiStepCount = 0;
+          aiTimeout = $timeout(onAiMove, 1000);
         } else {
-          $scope.mode = MODE_USER_PLAY;
+          currentMode = MODE_USER_PLAY;
         }
       }, function (err) {
-        $log.error(err);
+        currentMode = MODE_USER_PLAY;
       });
   };
 
-  $scope.onAiMove = function () {
-    if ($scope.mode === MODE_USER_PLAY) {
+  var onAiMove = function () {
+    if (currentMode === MODE_USER_PLAY) {
       return;
     }
 
-    var step = $scope.aiSteps[$scope.aiStepCount];
+    var step = aiSteps[aiStepCount];
     var tile = $scope.tiles[step.id];
 
-    if ($scope.lastTile != tile) {
-      TileService.reset();
-      $scope.currentStep++;
-    }
-    $scope.lastTile = tile;
+    countStep(tile);
+    TileService.moveTileByPos(tile, step.pos);
 
-    TileService.markTile(tile, 0);
-    tile.pos += step.pos;
-    TileService.markTile(tile, tile.type);
-
-    if ($scope.aiStepCount < $scope.aiSteps.length - 1) {
-      $scope.aiStepCount++;
-      $scope.aiTimeout = $timeout($scope.onAiMove, 1000);
+    if (aiStepCount < aiSteps.length - 1) {
+      aiStepCount++;
+      aiTimeout = $timeout(onAiMove, 1000);
     } else {
-      $scope.mode = MODE_USER_PLAY;
+      currentMode = MODE_USER_PLAY;
     }
   };
 
   $scope.stopAi = function() {
-    $timeout.cancel($scope.aiTimeout);
-    $scope.mode = MODE_USER_PLAY;
+    $timeout.cancel(aiTimeout);
+    currentMode = MODE_USER_PLAY;
   };
+
+  var countStep = function (tile) {
+    if (lastTile != tile) {
+      TileService.reset();
+      $scope.currentStep++;
+    }
+    lastTile = tile;
+  };
+
+  $scope.$on('levelComplete', function(event) {
+
+  });
 
   // ------------------------------
   //  Level service
@@ -129,49 +177,9 @@ angular.module('GameApp')
 
   LevelService.getLevelData()
     .then(function (data) {
-      $scope.levelData = data;
-      $scope.totalLevel = data.length;
-
-      getCurrentLevelData();
+      $scope.levelGrid = data;
     }, function (err) {
       $log.error(err);
     });
-
-  var getCurrentLevelData = function () {
-    var data = angular.copy($scope.levelData[$scope.level]);
-
-    $scope.title = data.title;
-    $scope.tiles = data.tiles;
-
-    TileService.init($scope.tiles);
-  };
-
-  // ------------------------------
-  //  Keyboard service
-  // ------------------------------
-
-  KeyboardService.on(function (key) {
-    console.log(key);
-  });
-
-  // ------------------------------
-  //  Event handlers
-  // ------------------------------
-
-  $scope.moveTile = function (tile) {
-    if ($scope.mode === MODE_USER_PLAY) {
-      if ($scope.lastTile != tile) {
-        TileService.reset();
-        $scope.currentStep++;
-      }
-      $scope.lastTile = tile;
-
-      TileService.moveTile(tile);
-    }
-  };
-
-  $scope.$on('levelComplete', function(event) {
-
-  });
 
 });

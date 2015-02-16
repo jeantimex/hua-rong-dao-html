@@ -19,8 +19,8 @@ angular.module('GameApp')
 
     $http.get(dataUrl)
       .success(function (data) {
-        self.processData(data);
-        deferred.resolve(data);
+        var res = self.processData(data);
+        deferred.resolve(res);
       })
       .error(function () {
         deferred.reject('There was an error');
@@ -34,7 +34,9 @@ angular.module('GameApp')
    */
   this.processData = function (data) {
     if (angular.isArray(data)) {
-      for (var i = 0; i < data.length; i++) {
+      var i;
+
+      for (i = 0; i < data.length; i++) {
         var tiles = data[i].tiles;
 
         if (angular.isArray(tiles)) {
@@ -43,6 +45,13 @@ angular.module('GameApp')
           }
         }
       }
+
+      var res = [];
+      for (i = 0; i < data.length; i += 5) {
+        res.push(data.slice(i, i + 5));
+      }
+
+      return res;
     }
   };
 

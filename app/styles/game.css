@@ -1,5 +1,47 @@
 /* Styles for game.html */
 
+.col-xs-5,
+.col-sm-5,
+.col-md-5,
+.col-lg-5 {
+  position: relative;
+  min-height: 1px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.col-xs-5 {
+  width: 20%;
+  float: left;
+}
+@media (min-width: 768px) {
+  .col-sm-5 {
+    width: 20%;
+    float: left;
+  }
+}
+@media (min-width: 992px) {
+  .col-md-5 {
+    width: 20%;
+    float: left;
+  }
+}
+@media (min-width: 1200px) {
+  .col-lg-5 {
+    width: 20%;
+    float: left;
+  }
+}
+
+a.thumbnail {
+  text-decoration: none;
+  height: 150px;
+}
+
+a.thumbnail .caption p {
+  font-size: 1em !important;
+}
+
 #board {
   width: 320px;
   height: 400px;
