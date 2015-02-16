@@ -1,3 +1,7 @@
+<div class="alert alert-success" role="alert" ng-show="levelPassed">
+  Well Done! You have passed this level!
+</div>
+
 <h4 class="text-center">{{getTitle()}}</h4>
 
 <div class="jumbotron">
@@ -35,6 +39,5 @@
     <li ng-show="isAiMode()">
       <a ng-click="stopAi()"><span class="glyphicon glyphicon-stop" aria-hidden="true"></span></a>
     </li>
-    <li class="pull-right">{{currentStep}}</li>
   </ul>
 </nav>

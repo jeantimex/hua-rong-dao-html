@@ -39,6 +39,7 @@ angular.module('GameApp')
   $scope.tiles = [];
   $scope.levelGrid = [];
   $scope.currentStep = 0;
+  $scope.levelPassed = false;
 
   // ------------------------------
   //  UI: Get title
@@ -100,7 +101,7 @@ angular.module('GameApp')
   $scope.reset = function () {
     $scope.stopAi();
     $scope.currentStep = 0;
-
+    $scope.levelPassed = false;
     setLevelData(currentLevel);
   };
 
@@ -116,7 +117,7 @@ angular.module('GameApp')
   // ------------------------------
 
   $scope.playAi = function () {
-    if (currentMode != MODE_USER_PLAY) {
+    if (currentMode !== MODE_USER_PLAY) {
       return;
     }
     currentMode = MODE_AI_PLAY;
@@ -130,7 +131,7 @@ angular.module('GameApp')
         } else {
           currentMode = MODE_USER_PLAY;
         }
-      }, function (err) {
+      }, function () {
         currentMode = MODE_USER_PLAY;
       });
   };
@@ -160,15 +161,15 @@ angular.module('GameApp')
   };
 
   var countStep = function (tile) {
-    if (lastTile != tile) {
+    if (lastTile !== tile) {
       TileService.reset();
       $scope.currentStep++;
     }
     lastTile = tile;
   };
 
-  $scope.$on('levelComplete', function(event) {
-
+  $scope.$on('levelComplete', function() {
+    $scope.levelPassed = true;
   });
 
   // ------------------------------

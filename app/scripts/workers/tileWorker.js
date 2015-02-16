@@ -2,10 +2,12 @@
  * Created by su on 2/13/15.
  */
 
+'use strict';
+
 var ROW = 5;
 var COL = 4;
 
-self.isObject = function (val) {
+var isObject = function (val) {
   if (val === null) {
     return false;
   }
@@ -13,22 +15,26 @@ self.isObject = function (val) {
   return ((typeof val === 'function') || (typeof val === 'object'));
 };
 
-self.copy = function (obj) {
-  if (Object.prototype.toString.call(obj) === '[object Array]') {
-    var out = [], i = 0, len = obj.length;
+var copy = function (obj) {
+  var out, i;
 
-    for ( ; i < len; i++ ) {
-      out[i] = arguments.callee(obj[i]);
+  if (Object.prototype.toString.call(obj) === '[object Array]') {
+    out = [];
+    i = 0;
+    var len = obj.length;
+
+    for (; i < len; i++) {
+      out[i] = copy(obj[i]);
     }
 
     return out;
   }
 
   if (typeof obj === 'object') {
-    var out = {}, i;
+    out = {};
 
-    for ( i in obj ) {
-      out[i] = arguments.callee(obj[i]);
+    for (i in obj) {
+      out[i] = copy(obj[i]);
     }
 
     return out;
@@ -42,31 +48,31 @@ self.copy = function (obj) {
  * @param tile
  * @param grid
  */
-self.canMoveUp = function (tile, grid) {
+var canMoveUp = function (tile, grid) {
   var row = parseInt(tile.pos / 4),
-    col = parseInt(tile.pos % 4);
+      col = parseInt(tile.pos % 4);
 
   switch (tile.type) {
     case 1:
-      if (row === 0 || grid[row - 1][col] != 0) {
+      if (row === 0 || grid[row - 1][col] !== 0) {
         return false;
       }
       break;
 
     case 2:
-      if (row === 0 || grid[row - 1][col] != 0 || grid[row - 1][col + 1] != 0) {
+      if (row === 0 || grid[row - 1][col] !== 0 || grid[row - 1][col + 1] !== 0) {
         return false;
       }
       break;
 
     case 3:
-      if (row === 0 || grid[row - 1][col] != 0) {
+      if (row === 0 || grid[row - 1][col] !== 0) {
         return false;
       }
       break;
 
     case 9:
-      if (row === 0 || grid[row - 1][col] != 0 || grid[row - 1][col + 1] != 0) {
+      if (row === 0 || grid[row - 1][col] !== 0 || grid[row - 1][col + 1] !== 0) {
         return false;
       }
       break;
@@ -81,31 +87,31 @@ self.canMoveUp = function (tile, grid) {
  * @param row
  * @param col
  */
-self.canMoveDown = function (tile, grid) {
+var canMoveDown = function (tile, grid) {
   var row = parseInt(tile.pos / 4),
     col = parseInt(tile.pos % 4);
 
   switch (tile.type) {
     case 1:
-      if (row === 4 || grid[row + 1][col] != 0) {
+      if (row === 4 || grid[row + 1][col] !== 0) {
         return false;
       }
       break;
 
     case 2:
-      if (row === 4 || grid[row + 1][col] != 0 || grid[row + 1][col + 1] != 0) {
+      if (row === 4 || grid[row + 1][col] !== 0 || grid[row + 1][col + 1] !== 0) {
         return false;
       }
       break;
 
     case 3:
-      if (row === 3 || grid[row + 2][col] != 0) {
+      if (row === 3 || grid[row + 2][col] !== 0) {
         return false;
       }
       break;
 
     case 9:
-      if (row === 3 || grid[row + 2][col] != 0 || grid[row + 2][col + 1] != 0) {
+      if (row === 3 || grid[row + 2][col] !== 0 || grid[row + 2][col + 1] !== 0) {
         return false;
       }
       break;
@@ -120,31 +126,31 @@ self.canMoveDown = function (tile, grid) {
  * @param row
  * @param col
  */
-self.canMoveLeft = function (tile, grid) {
+var canMoveLeft = function (tile, grid) {
   var row = parseInt(tile.pos / 4),
     col = parseInt(tile.pos % 4);
 
   switch (tile.type) {
     case 1:
-      if (col === 0 || grid[row][col - 1] != 0) {
+      if (col === 0 || grid[row][col - 1] !== 0) {
         return false;
       }
       break;
 
     case 2:
-      if (col === 0 || grid[row][col - 1] != 0) {
+      if (col === 0 || grid[row][col - 1] !== 0) {
         return false;
       }
       break;
 
     case 3:
-      if (col === 0 || grid[row][col - 1] != 0 || grid[row + 1][col - 1] != 0) {
+      if (col === 0 || grid[row][col - 1] !== 0 || grid[row + 1][col - 1] !== 0) {
         return false;
       }
       break;
 
     case 9:
-      if (col === 0 || grid[row][col - 1] != 0 || grid[row + 1][col - 1] != 0) {
+      if (col === 0 || grid[row][col - 1] !== 0 || grid[row + 1][col - 1] !== 0) {
         return false;
       }
       break;
@@ -159,44 +165,44 @@ self.canMoveLeft = function (tile, grid) {
  * @param grid
  * @returns {boolean}
  */
-self.canMoveRight = function (tile, grid) {
+var canMoveRight = function (tile, grid) {
   var row = parseInt(tile.pos / 4),
     col = parseInt(tile.pos % 4);
 
   switch (tile.type) {
     case 1:
-      if (col === 3 || grid[row][col + 1] != 0) {
+      if (col === 3 || grid[row][col + 1] !== 0) {
         return false;
       }
       break;
 
     case 2:
-      if (col === 2 || grid[row][col + 2] != 0) {
+      if (col === 2 || grid[row][col + 2] !== 0) {
         return false;
       }
       break;
 
     case 3:
-      if (col === 3 || grid[row][col + 1] != 0 || grid[row + 1][col + 1] != 0) {
+      if (col === 3 || grid[row][col + 1] !== 0 || grid[row + 1][col + 1] !== 0) {
         return false;
       }
       break;
 
     case 9:
-      if (col === 2 || grid[row][col + 2] != 0 || grid[row + 1][col + 2] != 0) {
+      if (col === 2 || grid[row][col + 2] !== 0 || grid[row + 1][col + 2] !== 0) {
         return false;
       }
       break;
   }
 
   return true;
-}
+};
 
 /**
  *
  * @param tiles
  */
-self.pass = function (tiles) {
+var pass = function (tiles) {
   for (var i = 0; i < tiles.length; i++) {
     var tile = tiles[i];
     if (tile.type === 9 && tile.pos === 13) {
@@ -211,7 +217,7 @@ self.pass = function (tiles) {
  * @param tiles
  * @returns {Array}
  */
-self.getGrid = function (tiles) {
+var getGrid = function (tiles) {
   var res = [];
   var i, j = 0;
 
@@ -254,8 +260,8 @@ self.getGrid = function (tiles) {
  *
  * @param grid
  */
-self.getKey = function (tiles) {
-  var grid = this.getGrid(tiles);
+var getKey = function (tiles) {
+  var grid = getGrid(tiles);
   var i, j, k = -1, c = 0, key = 0;
 
   for (i = 0; i < ROW; i++) {
@@ -266,7 +272,7 @@ self.getKey = function (tiles) {
       if (type === 9 && k === -1) {
         k = pos;
         key += pos * Math.pow(2, 32);
-      } else if (type != 9) {
+      } else if (type !== 9) {
         key += type * Math.pow(2, (c++) * 2);
       }
     }
@@ -275,8 +281,8 @@ self.getKey = function (tiles) {
   return key;
 };
 
-self.addPath = function (path, id, pos) {
-  var res = self.copy(path);
+var addPath = function (path, id, pos) {
+  var res = copy(path);
   if (res.length > 0 && res[res.length - 1].id === id && res[res.length - 1].pos === pos) {
     res[res.length - 1].pos += pos;
   } else {
@@ -285,13 +291,13 @@ self.addPath = function (path, id, pos) {
   return res;
 };
 
-self.getStepCount = function (path) {
+var getStepCount = function (path) {
   var count = 0;
   var j = -1;
 
   for (var i = 0; i < path.length; i++) {
     var step = path[i];
-    if (step.id != j) {
+    if (step.id !== j) {
       j = step.id;
       count++;
     }
@@ -300,12 +306,12 @@ self.getStepCount = function (path) {
   return count;
 };
 
-self.getBestResult = function (paths) {
+var getBestResult = function (paths) {
   var res = null;
   var min = Math.pow(2, 53);
 
   for (var i = 0; i < paths.length; i++) {
-    var count = self.getStepCount(paths[i]);
+    var count = getStepCount(paths[i]);
     if (count < min) {
       res = paths[i];
       min = count;
@@ -317,23 +323,21 @@ self.getBestResult = function (paths) {
   return res;
 };
 
-self.addEventListener('message', function(e) {
+addEventListener('message', function(e) {
   var paths = [];
   var result = [];
   var tiles = e.data;
 
   var visited = {};
   var queue = [];
-  var level = 0;
 
   // Initial state
   var grid;
-  var path;
-  var key = self.getKey(tiles);
+  var key = getKey(tiles);
   visited[key] = true;
 
   queue.push({
-    tiles: self.copy(tiles),
+    tiles: copy(tiles),
     path: []
   });
 
@@ -345,12 +349,12 @@ self.addEventListener('message', function(e) {
     var state = queue[0];
     queue.splice(0, 1);
 
-    if (self.isObject(state)) {
-      grid = self.getGrid(state.tiles);
+    if (isObject(state)) {
+      grid = getGrid(state.tiles);
 
       // check if it's complete
-      if (self.pass(state.tiles)) {
-        paths.push(self.copy(state.path));
+      if (pass(state.tiles)) {
+        paths.push(copy(state.path));
       }
 
       // generate every possible state by each tile
@@ -358,16 +362,16 @@ self.addEventListener('message', function(e) {
         var tile = state.tiles[i];
 
         // up
-        if (self.canMoveUp(tile, grid)) {
+        if (canMoveUp(tile, grid)) {
           tile.pos -= 4;
-          key = self.getKey(state.tiles);
+          key = getKey(state.tiles);
 
           if (!visited.hasOwnProperty(key)) {
             visited[key] = true;
 
             queue.push({
-              tiles: self.copy(state.tiles),
-              path: self.addPath(state.path, tile.id, -4)
+              tiles: copy(state.tiles),
+              path: addPath(state.path, tile.id, -4)
             });
           }
 
@@ -375,16 +379,16 @@ self.addEventListener('message', function(e) {
         }
 
         // down
-        if (self.canMoveDown(tile, grid)) {
+        if (canMoveDown(tile, grid)) {
           tile.pos += 4;
-          key = self.getKey(state.tiles);
+          key = getKey(state.tiles);
 
           if (!visited.hasOwnProperty(key)) {
             visited[key] = true;
 
             queue.push({
-              tiles: self.copy(state.tiles),
-              path: self.addPath(state.path, tile.id, 4)
+              tiles: copy(state.tiles),
+              path: addPath(state.path, tile.id, 4)
             });
           }
 
@@ -392,16 +396,16 @@ self.addEventListener('message', function(e) {
         }
 
         // left
-        if (self.canMoveLeft(tile, grid)) {
+        if (canMoveLeft(tile, grid)) {
           tile.pos -= 1;
-          key = self.getKey(state.tiles);
+          key = getKey(state.tiles);
 
           if (!visited.hasOwnProperty(key)) {
             visited[key] = true;
 
             queue.push({
-              tiles: self.copy(state.tiles),
-              path: self.addPath(state.path, tile.id, -1)
+              tiles: copy(state.tiles),
+              path: addPath(state.path, tile.id, -1)
             });
           }
 
@@ -409,16 +413,16 @@ self.addEventListener('message', function(e) {
         }
 
         // right
-        if (self.canMoveRight(tile, grid)) {
+        if (canMoveRight(tile, grid)) {
           tile.pos += 1;
-          key = self.getKey(state.tiles);
+          key = getKey(state.tiles);
 
           if (!visited.hasOwnProperty(key)) {
             visited[key] = true;
 
             queue.push({
-              tiles: self.copy(state.tiles),
-              path: self.addPath(state.path, tile.id, 1)
+              tiles: copy(state.tiles),
+              path: addPath(state.path, tile.id, 1)
             });
           }
 
@@ -434,7 +438,7 @@ self.addEventListener('message', function(e) {
   }
 
   // find the minimum one
-  result = self.getBestResult(paths);
+  result = getBestResult(paths);
 
   postMessage(result);
 
