@@ -318,8 +318,6 @@ var getBestResult = function (paths) {
     }
   }
 
-  console.log(min);
-
   return res;
 };
 
