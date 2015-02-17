@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "title": "横刀立马",
     "tiles": [
       {"type": 9, "index": 0, "pos": 1},
@@ -15,6 +16,7 @@
     ]
   },
   {
+    "id": 2,
     "title": "指挥若定",
     "tiles": [
       {"type": 9, "index": 0, "pos": 1},
