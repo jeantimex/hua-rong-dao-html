@@ -124,6 +124,7 @@ angular.module('GameApp')
 
     TileService.solve($scope.tiles)
       .then(function (data) {
+        /*
         if (angular.isArray(data) && currentMode === MODE_AI_PLAY) {
           aiSteps = data;
           aiStepCount = 0;
@@ -131,6 +132,9 @@ angular.module('GameApp')
         } else {
           currentMode = MODE_USER_PLAY;
         }
+        */
+        console.log(data);
+        currentMode = MODE_USER_PLAY;
       }, function () {
         currentMode = MODE_USER_PLAY;
       });

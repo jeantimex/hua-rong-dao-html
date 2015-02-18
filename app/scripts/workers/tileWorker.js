@@ -45,161 +45,6 @@ var copy = function (obj) {
 
 /**
  *
- * @param tile
- * @param grid
- */
-var canMoveUp = function (tile, grid) {
-  var row = parseInt(tile.pos / 4),
-      col = parseInt(tile.pos % 4);
-
-  switch (tile.type) {
-    case 1:
-      if (row === 0 || grid[row - 1][col] !== 0) {
-        return false;
-      }
-      break;
-
-    case 2:
-      if (row === 0 || grid[row - 1][col] !== 0 || grid[row - 1][col + 1] !== 0) {
-        return false;
-      }
-      break;
-
-    case 3:
-      if (row === 0 || grid[row - 1][col] !== 0) {
-        return false;
-      }
-      break;
-
-    case 9:
-      if (row === 0 || grid[row - 1][col] !== 0 || grid[row - 1][col + 1] !== 0) {
-        return false;
-      }
-      break;
-  }
-
-  return true;
-};
-
-/**
- *
- * @param grid
- * @param row
- * @param col
- */
-var canMoveDown = function (tile, grid) {
-  var row = parseInt(tile.pos / 4),
-    col = parseInt(tile.pos % 4);
-
-  switch (tile.type) {
-    case 1:
-      if (row === 4 || grid[row + 1][col] !== 0) {
-        return false;
-      }
-      break;
-
-    case 2:
-      if (row === 4 || grid[row + 1][col] !== 0 || grid[row + 1][col + 1] !== 0) {
-        return false;
-      }
-      break;
-
-    case 3:
-      if (row === 3 || grid[row + 2][col] !== 0) {
-        return false;
-      }
-      break;
-
-    case 9:
-      if (row === 3 || grid[row + 2][col] !== 0 || grid[row + 2][col + 1] !== 0) {
-        return false;
-      }
-      break;
-  }
-
-  return true;
-};
-
-/**
- *
- * @param grid
- * @param row
- * @param col
- */
-var canMoveLeft = function (tile, grid) {
-  var row = parseInt(tile.pos / 4),
-    col = parseInt(tile.pos % 4);
-
-  switch (tile.type) {
-    case 1:
-      if (col === 0 || grid[row][col - 1] !== 0) {
-        return false;
-      }
-      break;
-
-    case 2:
-      if (col === 0 || grid[row][col - 1] !== 0) {
-        return false;
-      }
-      break;
-
-    case 3:
-      if (col === 0 || grid[row][col - 1] !== 0 || grid[row + 1][col - 1] !== 0) {
-        return false;
-      }
-      break;
-
-    case 9:
-      if (col === 0 || grid[row][col - 1] !== 0 || grid[row + 1][col - 1] !== 0) {
-        return false;
-      }
-      break;
-  }
-
-  return true;
-};
-
-/**
- *
- * @param tile
- * @param grid
- * @returns {boolean}
- */
-var canMoveRight = function (tile, grid) {
-  var row = parseInt(tile.pos / 4),
-    col = parseInt(tile.pos % 4);
-
-  switch (tile.type) {
-    case 1:
-      if (col === 3 || grid[row][col + 1] !== 0) {
-        return false;
-      }
-      break;
-
-    case 2:
-      if (col === 2 || grid[row][col + 2] !== 0) {
-        return false;
-      }
-      break;
-
-    case 3:
-      if (col === 3 || grid[row][col + 1] !== 0 || grid[row + 1][col + 1] !== 0) {
-        return false;
-      }
-      break;
-
-    case 9:
-      if (col === 2 || grid[row][col + 2] !== 0 || grid[row + 1][col + 2] !== 0) {
-        return false;
-      }
-      break;
-  }
-
-  return true;
-};
-
-/**
- *
  * @param tiles
  */
 var pass = function (tiles) {
@@ -256,6 +101,12 @@ var getGrid = function (tiles) {
   return res;
 };
 
+var printGrid = function (grid) {
+  for (var i = 0; i < ROW; i++) {
+    console.log(grid[i]);
+  }
+};
+
 /**
  *
  * @param grid
@@ -281,59 +132,215 @@ var getKey = function (tiles) {
   return key;
 };
 
-var addPath = function (path, id, pos) {
-  var res = copy(path);
-  if (res.length > 0 && res[res.length - 1].id === id && res[res.length - 1].pos === pos) {
-    res[res.length - 1].pos += pos;
-  } else {
-    res.push({'id': id, 'pos': pos});
-  }
-  return res;
+var calPos = function (row, col) {
+  return row * 4 + col;
 };
 
-var getStepCount = function (path) {
-  var count = 0;
-  var j = -1;
+var getNeighbors = function (grid, pos, type, visited) {
+  var res = [];
 
-  for (var i = 0; i < path.length; i++) {
-    var step = path[i];
-    if (step.id !== j) {
-      j = step.id;
-      count++;
+  var row = parseInt(pos / 4),
+      col = parseInt(pos % 4);
+
+  switch (type) {
+    // type 1
+    case 1:
+      // up
+      if (row > 0 && grid[row - 1][col] === 0) {
+        res.push(calPos(row - 1, col));
+      }
+
+      // right
+      if (col < 3 && grid[row][col + 1] === 0) {
+        res.push(calPos(row, col + 1));
+      }
+
+      // left
+      if (col > 0 && grid[row][col - 1] === 0) {
+        res.push(calPos(row, col - 1));
+      }
+
+      // down
+      if (row < 4 && grid[row + 1][col] === 0) {
+        res.push(calPos(row + 1, col));
+      }
+
+      break;
+
+    // type 2
+    case 2:
+      // up
+      if (row > 0 && grid[row - 1][col] === 0 && grid[row - 1][col + 1] === 0) {
+        res.push(calPos(row - 1, col));
+      }
+
+      // right
+      if (col < 2 && grid[row][col + 2] === 0) {
+        res.push(calPos(row, col + 1));
+      }
+
+      // left
+      if (col > 0 && grid[row][col - 1] === 0) {
+        res.push(calPos(row, col - 1));
+      }
+
+      // down
+      if (row < 4 && grid[row + 1][col] === 0 && grid[row + 1][col + 1] === 0) {
+        res.push(calPos(row + 1, col));
+      }
+
+      break;
+
+    // type 3
+    case 3:
+      // up
+      if (row > 0 && grid[row - 1][col] === 0) {
+        res.push(calPos(row - 1, col));
+      }
+
+      // right
+      if (col < 3 && grid[row][col + 1] === 0 && grid[row + 1][col + 1] === 0) {
+        res.push(calPos(row, col + 1));
+      }
+
+      // left
+      if (col > 0 && grid[row][col - 1] === 0 && grid[row + 1][col - 1] === 0) {
+        res.push(calPos(row, col - 1));
+      }
+
+      // down
+      if (row < 3 && grid[row + 2][col] === 0) {
+        res.push(calPos(row + 1, col));
+      }
+
+      break;
+
+    // type 9
+    case 9:
+      // up
+      if (row > 0 && grid[row - 1][col] === 0 && grid[row - 1][col + 1] === 0) {
+        res.push(calPos(row - 1, col));
+      }
+
+      // right
+      if (col < 2 && grid[row][col + 2] === 0 && grid[row + 1][col + 2] === 0) {
+        res.push(calPos(row, col + 1));
+      }
+
+      // left
+      if (col > 0 && grid[row][col - 1] === 0 && grid[row + 1][col - 1] === 0) {
+        res.push(calPos(row, col - 1));
+      }
+
+      // down
+      if (row < 3 && grid[row + 2][col] === 0 && grid[row + 2][col + 1] === 0) {
+        res.push(calPos(row + 1, col));
+      }
+
+      break;
+  }
+
+  // remove visited position(s)
+  for (var i = res.length - 1; i >= 0; i--) {
+    if (visited.hasOwnProperty(res[i])) {
+      res.splice(i, 1);
     }
   }
 
-  return count;
-};
-
-var getBestResult = function (paths) {
-  var res = null;
-  var min = Math.pow(2, 53);
-
-  for (var i = 0; i < paths.length; i++) {
-    var count = getStepCount(paths[i]);
-    if (count < min) {
-      res = paths[i];
-      min = count;
-    }
-  }
-
   return res;
 };
 
-addEventListener('message', function(e) {
+var isPosInStack = function (stack, pos) {
+  for (var i = 0; i < stack.length; i++) {
+    if (stack[i].pos === pos) {
+      return true;
+    }
+  }
+  return false;
+};
+
+/**
+ *
+ * @param grid
+ * @param tile
+ * @param path
+ * @returns {Array}
+ */
+var getPaths = function (grid, tile) {
+  console.log('generating paths for: ' + tile.id);
   var paths = [];
-  var result = [];
-  var tiles = e.data;
+  var pos = tile.pos;
+  var type = tile.type;
 
+  // DFS
+  var stack = [];
   var visited = {};
-  var queue = [];
+  var path = [];
 
   // Initial state
-  var grid;
+  // Format: [current position, parent position]
+  stack.push({'pos': pos, 'parent': -1});
+
+  // DFS
+  while (stack.length > 0) {
+    var p = stack.pop();
+    //console.log('pop: ' + p.pos);
+
+    // Add current position to path
+    path.push(p.pos);
+
+    // Mark it as visited
+    visited[p.pos] = true;
+
+    // Get neighbors
+    var neighbors = getNeighbors(grid, p.pos, type, visited);
+
+    for (var i = 0; i < neighbors.length; i++) {
+      var neighbor = neighbors[i];
+
+      if (!isPosInStack(stack, neighbor)) {
+        //console.log(neighbor);
+        stack.push({'pos': neighbor, 'parent': p.pos});
+      }
+    }
+
+    // If all neighbors are visited, we found a path
+    if (neighbors.length === 0) {
+      //console.log('path: ' + path);
+      paths.push(copy(path));
+
+      // trace back to the position which is equal
+      // to the parent of the top item in the stack
+      if (stack.length > 0) {
+        var parent = stack[stack.length - 1].parent;
+
+        while (path.length > 0 && (path[path.length - 1] !== parent)) {
+          path.pop();
+        }
+      }
+    }
+
+  }
+
+  //console.log(paths);
+  return paths;
+};
+
+/**
+ *
+ * @param tiles
+ */
+var solve = function (tiles) {
+  // BFS
+  var visited = {};
+  var queue = [];
+  var result = [];
+
+  // Mark initial state as visited
   var key = getKey(tiles);
   visited[key] = true;
 
+  // Enqueue initial state
   queue.push({
     tiles: copy(tiles),
     path: []
@@ -343,101 +350,44 @@ addEventListener('message', function(e) {
 
   // BFS
   while (queue.length > 0) {
-    // dequeue
+    // Dequeue
     var state = queue[0];
     queue.splice(0, 1);
 
     if (isObject(state)) {
-      grid = getGrid(state.tiles);
-
-      // check if it's complete
+      // Check if it's complete
       if (pass(state.tiles)) {
-        paths.push(copy(state.path));
-      }
+        result.push(copy(state.path));
+      } else {
+        // generate every possible state by each tile
+        var grid = getGrid(state.tiles);
+        var path = state.path;
 
-      // generate every possible state by each tile
-      for (var i = 0; i < state.tiles.length; i++) {
-        var tile = state.tiles[i];
+        console.log('--------------------------');
+        printGrid(grid);
+        console.log('path: ' + path);
 
-        // up
-        if (canMoveUp(tile, grid)) {
-          tile.pos -= 4;
-          key = getKey(state.tiles);
-
-          if (!visited.hasOwnProperty(key)) {
-            visited[key] = true;
-
-            queue.push({
-              tiles: copy(state.tiles),
-              path: addPath(state.path, tile.id, -4)
-            });
-          }
-
-          tile.pos += 4;
-        }
-
-        // down
-        if (canMoveDown(tile, grid)) {
-          tile.pos += 4;
-          key = getKey(state.tiles);
-
-          if (!visited.hasOwnProperty(key)) {
-            visited[key] = true;
-
-            queue.push({
-              tiles: copy(state.tiles),
-              path: addPath(state.path, tile.id, 4)
-            });
-          }
-
-          tile.pos -= 4;
-        }
-
-        // left
-        if (canMoveLeft(tile, grid)) {
-          tile.pos -= 1;
-          key = getKey(state.tiles);
-
-          if (!visited.hasOwnProperty(key)) {
-            visited[key] = true;
-
-            queue.push({
-              tiles: copy(state.tiles),
-              path: addPath(state.path, tile.id, -1)
-            });
-          }
-
-          tile.pos += 1;
-        }
-
-        // right
-        if (canMoveRight(tile, grid)) {
-          tile.pos += 1;
-          key = getKey(state.tiles);
-
-          if (!visited.hasOwnProperty(key)) {
-            visited[key] = true;
-
-            queue.push({
-              tiles: copy(state.tiles),
-              path: addPath(state.path, tile.id, 1)
-            });
-          }
-
-          tile.pos -= 1;
+        for (var i = 0; i < state.tiles.length; i++) {
+          var tile = state.tiles[i];
+          var paths = getPaths(grid, tile);
+          console.dir(paths);
         }
       }
-
     } else {
+      console.log('--------------------------');
       if (queue.length > 0) {
         queue.push(null);
       }
     }
   }
 
-  // find the minimum one
-  result = getBestResult(paths);
+  console.log('result:');
+  console.log(result);
 
+  return 'Yo';
+};
+
+addEventListener('message', function(e) {
+  var result = solve(e.data);
   postMessage(result);
-
 }, false);
