@@ -267,7 +267,7 @@ var isPosInStack = function (stack, pos) {
  * @returns {Array}
  */
 var getPaths = function (grid, tile) {
-  console.log('generating paths for: ' + tile.id);
+  //console.log('generating paths for: ' + tile.id);
   var paths = [];
   var pos = tile.pos;
   var type = tile.type;
@@ -335,10 +335,8 @@ var solve = function (tiles) {
   var visited = {};
   var queue = [];
   var result = [];
-
-  // Mark initial state as visited
-  var key = getKey(tiles);
-  visited[key] = true;
+  var level = 0;
+  var key;
 
   // Enqueue initial state
   queue.push({
@@ -355,26 +353,46 @@ var solve = function (tiles) {
     queue.splice(0, 1);
 
     if (isObject(state)) {
+      key = getKey(state.tiles);
+
+      visited[key] = true;
+
       // Check if it's complete
       if (pass(state.tiles)) {
+        console.log('solved in ' + level + ' steps');
         result.push(copy(state.path));
+        break;
       } else {
         // generate every possible state by each tile
         var grid = getGrid(state.tiles);
         var path = state.path;
 
-        console.log('--------------------------');
-        printGrid(grid);
-        console.log('path: ' + path);
+        //console.log('--------------------------');
+        //printGrid(grid);
+        //console.log('path: ' + path);
 
         for (var i = 0; i < state.tiles.length; i++) {
           var tile = state.tiles[i];
           var paths = getPaths(grid, tile);
-          console.dir(paths);
+
+          for (var j = 0; j < paths.length; j++) {
+            for (var k = 0; k < paths[j].length; k++) {
+              var newState = copy(state);
+
+              newState.tiles[tile.id].pos = paths[j][k];
+              key = getKey(newState.tiles);
+
+              if (!visited.hasOwnProperty(key)) {
+                visited[key] = true;
+                queue.push(newState);
+              }
+            }
+          }
         }
       }
     } else {
-      console.log('--------------------------');
+      //console.log('--------------------------');
+      level++;
       if (queue.length > 0) {
         queue.push(null);
       }
