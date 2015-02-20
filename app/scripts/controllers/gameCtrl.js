@@ -124,17 +124,13 @@ angular.module('GameApp')
 
     TileService.solve($scope.tiles)
       .then(function (data) {
-        /*
-        if (angular.isArray(data) && currentMode === MODE_AI_PLAY) {
+        if (angular.isArray(data) && data.length > 0 && currentMode === MODE_AI_PLAY) {
           aiSteps = data;
           aiStepCount = 0;
           aiTimeout = $timeout(onAiMove, 1000);
         } else {
           currentMode = MODE_USER_PLAY;
         }
-        */
-        console.log(data);
-        currentMode = MODE_USER_PLAY;
       }, function () {
         currentMode = MODE_USER_PLAY;
       });
@@ -147,13 +143,14 @@ angular.module('GameApp')
 
     var step = aiSteps[aiStepCount];
     var tile = $scope.tiles[step.id];
+    var delay = 1000;
 
     countStep(tile);
     TileService.moveTileByPos(tile, step.pos);
 
     if (aiStepCount < aiSteps.length - 1) {
       aiStepCount++;
-      aiTimeout = $timeout(onAiMove, 1000);
+      aiTimeout = $timeout(onAiMove, delay);
     } else {
       currentMode = MODE_USER_PLAY;
     }

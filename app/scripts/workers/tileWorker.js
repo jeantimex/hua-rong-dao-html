@@ -4,6 +4,10 @@
 
 'use strict';
 
+(function () {
+
+})();
+
 var ROW = 5;
 var COL = 4;
 
@@ -75,9 +79,9 @@ var getGrid = function (tiles) {
 
   for (i = 0; i < tiles.length; i++) {
     var tile = tiles[i],
-      type = parseInt(tile.type),
-      row  = parseInt(tile.pos / 4),
-      col  = parseInt(tile.pos % 4);
+        type = parseInt(tile.type),
+        row  = parseInt(tile.pos / 4),
+        col  = parseInt(tile.pos % 4);
 
     res[row][col] = type;
 
@@ -259,6 +263,31 @@ var isPosInStack = function (stack, pos) {
   return false;
 };
 
+var getIncrementalPath = function (path) {
+  var res = [];
+  for (var i = 1; i < path.length; i++) {
+    res.push(path[i] - path[i - 1]);
+  }
+  return res;
+};
+
+var formatMoves = function (id, moves) {
+  var res = [];
+  for (var i = 0; i < moves.length; i++) {
+    if (i > 0 && moves[i] === moves[i - 1]) {
+      res[res.length - 1].pos += moves[i];
+    } else {
+      res.push({
+        'id': id,
+        'pos': moves[i]
+      });
+    }
+  }
+
+
+  return res;
+};
+
 /**
  *
  * @param grid
@@ -306,8 +335,7 @@ var getPaths = function (grid, tile) {
 
     // If all neighbors are visited, we found a path
     if (neighbors.length === 0) {
-      //console.log('path: ' + path);
-      paths.push(copy(path));
+      paths.push(getIncrementalPath(path));
 
       // trace back to the position which is equal
       // to the parent of the top item in the stack
@@ -360,12 +388,11 @@ var solve = function (tiles) {
       // Check if it's complete
       if (pass(state.tiles)) {
         console.log('solved in ' + level + ' steps');
-        result.push(copy(state.path));
+        result = state.path;
         break;
       } else {
         // generate every possible state by each tile
         var grid = getGrid(state.tiles);
-        var path = state.path;
 
         //console.log('--------------------------');
         //printGrid(grid);
@@ -376,15 +403,21 @@ var solve = function (tiles) {
           var paths = getPaths(grid, tile);
 
           for (var j = 0; j < paths.length; j++) {
+            var pos = state.tiles[tile.id].pos;
+
             for (var k = 0; k < paths[j].length; k++) {
               var newState = copy(state);
-
-              newState.tiles[tile.id].pos = paths[j][k];
+              pos += paths[j][k];
+              newState.tiles[tile.id].pos = pos;
               key = getKey(newState.tiles);
 
               if (!visited.hasOwnProperty(key)) {
-                visited[key] = true;
+                var moves = paths[j].slice(0, k + 1);
+                moves = formatMoves(tile.id, moves);
+                newState.path = newState.path.concat(moves);
+
                 queue.push(newState);
+                visited[key] = true;
               }
             }
           }
@@ -399,10 +432,9 @@ var solve = function (tiles) {
     }
   }
 
-  console.log('result:');
-  console.log(result);
+  //console.log(result);
 
-  return 'Yo';
+  return result;
 };
 
 addEventListener('message', function(e) {

@@ -60,7 +60,6 @@ span.title {
 
 .tile {
   position: absolute;
-  /*
   transition-property: top, left;
   transition-duration: 0.1s, 0.1s;
   transition-timing-function: ease-out;
@@ -69,7 +68,6 @@ span.title {
       -moz-transform: translateZ(0);
         -o-transform: translateZ(0);
            transform: translateZ(0);
-   */
 }
 
 .tile p {
