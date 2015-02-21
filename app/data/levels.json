@@ -3,12 +3,12 @@
     "id": 1,
     "title": "横刀立马",
     "tiles": [
-      {"type": 9, "index": 0, "pos": 1},
-      {"type": 3, "index": 0, "pos": 0},
-      {"type": 3, "index": 1, "pos": 3},
-      {"type": 3, "index": 2, "pos": 8},
-      {"type": 2, "index": 0, "pos": 9},
+      {"type": 9, "index": 0, "pos": 1 },
+      {"type": 3, "index": 0, "pos": 0 },
+      {"type": 3, "index": 1, "pos": 3 },
+      {"type": 3, "index": 2, "pos": 8 },
       {"type": 3, "index": 3, "pos": 11},
+      {"type": 2, "index": 0, "pos": 9 },
       {"type": 1, "index": 0, "pos": 13},
       {"type": 1, "index": 1, "pos": 14},
       {"type": 1, "index": 2, "pos": 16},
@@ -19,16 +19,624 @@
     "id": 2,
     "title": "指挥若定",
     "tiles": [
-      {"type": 9, "index": 0, "pos": 1},
-      {"type": 3, "index": 0, "pos": 0},
-      {"type": 1, "index": 0, "pos": 3},
-      {"type": 1, "index": 1, "pos": 7},
-      {"type": 2, "index": 0, "pos": 8},
+      {"type": 9, "index": 0, "pos": 1 },
+      {"type": 3, "index": 0, "pos": 0 },
+      {"type": 3, "index": 1, "pos": 3 },
+      {"type": 3, "index": 2, "pos": 12},
+      {"type": 3, "index": 3, "pos": 15},
+      {"type": 2, "index": 0, "pos": 9 },
+      {"type": 1, "index": 0, "pos": 8 },
+      {"type": 1, "index": 1, "pos": 11},
+      {"type": 1, "index": 2, "pos": 13},
+      {"type": 1, "index": 3, "pos": 14}
+    ]
+  },
+  {
+    "id": 3,
+    "title": "将拥曹营",
+    "tiles": [
+      {"type": 9, "index": 0, "pos": 1 },
+      {"type": 3, "index": 0, "pos": 4 },
+      {"type": 3, "index": 1, "pos": 7 },
+      {"type": 3, "index": 2, "pos": 9 },
+      {"type": 3, "index": 3, "pos": 10},
+      {"type": 2, "index": 0, "pos": 16},
+      {"type": 1, "index": 0, "pos": 12},
+      {"type": 1, "index": 1, "pos": 15},
+      {"type": 1, "index": 2, "pos": 18},
+      {"type": 1, "index": 3, "pos": 19}
+    ]
+  },
+  {
+    "id": 4,
+    "title": "齐头并进",
+    "tiles": [
+      {"type": 9, "index": 0, "pos": 1 },
+      {"type": 3, "index": 0, "pos": 0 },
+      {"type": 3, "index": 1, "pos": 3 },
+      {"type": 3, "index": 2, "pos": 12},
+      {"type": 3, "index": 3, "pos": 15},
+      {"type": 2, "index": 0, "pos": 13},
+      {"type": 1, "index": 0, "pos": 8 },
+      {"type": 1, "index": 1, "pos": 9 },
       {"type": 1, "index": 2, "pos": 10},
-      {"type": 1, "index": 3, "pos": 11},
+      {"type": 1, "index": 3, "pos": 11}
+    ]
+  },
+  {
+    "id": 5,
+    "title": "并分三路",
+    "tiles": [
+      {"type": 9, "index": 0, "pos": 1 },
+      {"type": 3, "index": 0, "pos": 4 },
+      {"type": 3, "index": 1, "pos": 7 },
+      {"type": 3, "index": 2, "pos": 12},
+      {"type": 3, "index": 3, "pos": 15},
+      {"type": 2, "index": 0, "pos": 9 },
+      {"type": 1, "index": 0, "pos": 0 },
+      {"type": 1, "index": 1, "pos": 3 },
+      {"type": 1, "index": 2, "pos": 13},
+      {"type": 1, "index": 3, "pos": 14}
+    ]
+  },
+  {
+    "id": 6,
+    "title": "雨声淅沥",
+    "tiles": [
+      {"type": 9, "index": 0, "pos": 1 },
+      {"type": 3, "index": 0, "pos": 0 },
+      {"type": 3, "index": 1, "pos": 8 },
+      {"type": 3, "index": 2, "pos": 11},
+      {"type": 3, "index": 3, "pos": 13},
+      {"type": 2, "index": 0, "pos": 9 },
+      {"type": 1, "index": 0, "pos": 3 },
+      {"type": 1, "index": 1, "pos": 7 },
+      {"type": 1, "index": 2, "pos": 16},
+      {"type": 1, "index": 3, "pos": 19}
+    ]
+  },
+  {
+    "id": 7,
+    "title": "左右布兵",
+    "tiles": [
+      {"type": 9, "index": 0, "pos": 1 },
+      {"type": 3, "index": 0, "pos": 8 },
+      {"type": 3, "index": 1, "pos": 9 },
+      {"type": 3, "index": 2, "pos": 10},
+      {"type": 3, "index": 3, "pos": 11},
+      {"type": 2, "index": 0, "pos": 17},
+      {"type": 1, "index": 0, "pos": 0 },
+      {"type": 1, "index": 1, "pos": 3 },
+      {"type": 1, "index": 2, "pos": 4 },
+      {"type": 1, "index": 3, "pos": 7 }
+    ]
+  },
+  {
+    "id": 8,
+    "title": "桃花园中",
+    "tiles": [
+      {"type": 9, "index": 0, "pos": 1 },
+      {"type": 3, "index": 0, "pos": 4 },
+      {"type": 3, "index": 1, "pos": 7 },
+      {"type": 3, "index": 2, "pos": 9 },
+      {"type": 3, "index": 3, "pos": 10},
+      {"type": 2, "index": 0, "pos": 17},
+      {"type": 1, "index": 0, "pos": 0 },
+      {"type": 1, "index": 1, "pos": 3 },
+      {"type": 1, "index": 2, "pos": 12},
+      {"type": 1, "index": 3, "pos": 15}
+    ]
+  },
+  {
+    "id": 9,
+    "title": "桃花园中",
+    "tiles": [
+      {"type": 9, "index": 0, "pos": 1 },
+      {"type": 3, "index": 0, "pos": 4 },
+      {"type": 3, "index": 1, "pos": 7 },
+      {"type": 3, "index": 2, "pos": 9 },
+      {"type": 3, "index": 3, "pos": 10},
+      {"type": 2, "index": 0, "pos": 17},
+      {"type": 1, "index": 0, "pos": 0 },
+      {"type": 1, "index": 1, "pos": 3 },
+      {"type": 1, "index": 2, "pos": 12},
+      {"type": 1, "index": 3, "pos": 15}
+    ]
+  },
+  {
+    "id": 10,
+    "title": "一路顺风",
+    "tiles": [
+      {"type": 9, "index": 0, "pos": 1 },
+      {"type": 3, "index": 0, "pos": 0 },
+      {"type": 3, "index": 1, "pos": 8 },
+      {"type": 3, "index": 2, "pos": 11},
+      {"type": 3, "index": 3, "pos": 14},
+      {"type": 2, "index": 0, "pos": 9 },
+      {"type": 1, "index": 0, "pos": 3 },
+      {"type": 1, "index": 1, "pos": 7 },
+      {"type": 1, "index": 2, "pos": 13},
+      {"type": 1, "index": 3, "pos": 17}
+    ]
+  },
+  {
+    "id": 11,
+    "title": "围而不歼",
+    "tiles": [
+      {"type": 9, "index": 0, "pos": 1 },
+      {"type": 3, "index": 0, "pos": 0 },
+      {"type": 3, "index": 1, "pos": 8 },
+      {"type": 3, "index": 2, "pos": 13},
+      {"type": 3, "index": 3, "pos": 14},
+      {"type": 2, "index": 0, "pos": 9 },
+      {"type": 1, "index": 0, "pos": 3 },
+      {"type": 1, "index": 1, "pos": 7 },
+      {"type": 1, "index": 2, "pos": 11},
+      {"type": 1, "index": 3, "pos": 15}
+    ]
+  },
+  {
+    "id": 12,
+    "title": "捷足先登",
+    "tiles": [
+      {"type": 9, "index": 0, "pos": 1 },
+      {"type": 3, "index": 0, "pos": 12},
+      {"type": 3, "index": 1, "pos": 13},
+      {"type": 3, "index": 2, "pos": 14},
+      {"type": 3, "index": 3, "pos": 15},
+      {"type": 2, "index": 0, "pos": 9 },
+      {"type": 1, "index": 0, "pos": 0 },
+      {"type": 1, "index": 1, "pos": 3 },
+      {"type": 1, "index": 2, "pos": 4 },
+      {"type": 1, "index": 3, "pos": 7 }
+    ]
+  },
+  {
+    "id": 13,
+    "title": "插翅难飞",
+    "tiles": [
+      {"type": 9, "index": 0, "pos": 1 },
+      {"type": 3, "index": 0, "pos": 0 },
       {"type": 3, "index": 1, "pos": 12},
       {"type": 3, "index": 2, "pos": 15},
-      {"type": 2, "index": 1, "pos": 13}
+      {"type": 2, "index": 0, "pos": 8 },
+      {"type": 2, "index": 1, "pos": 13},
+      {"type": 1, "index": 0, "pos": 3 },
+      {"type": 1, "index": 1, "pos": 7 },
+      {"type": 1, "index": 2, "pos": 10},
+      {"type": 1, "index": 3, "pos": 11}
+    ]
+  },
+  {
+    "id": 14,
+    "title": "守口如瓶(一)",
+    "tiles": [
+      {"type": 9, "index": 0, "pos": 1 },
+      {"type": 3, "index": 0, "pos": 0 },
+      {"type": 3, "index": 1, "pos": 3 },
+      {"type": 3, "index": 2, "pos": 9 },
+      {"type": 2, "index": 0, "pos": 16},
+      {"type": 2, "index": 1, "pos": 18},
+      {"type": 1, "index": 0, "pos": 8 },
+      {"type": 1, "index": 1, "pos": 11},
+      {"type": 1, "index": 2, "pos": 12},
+      {"type": 1, "index": 3, "pos": 15}
+    ]
+  },
+  {
+    "id": 15,
+    "title": "守口如瓶(二)",
+    "tiles": [
+      {"type": 9, "index": 0, "pos": 1 },
+      {"type": 3, "index": 0, "pos": 4 },
+      {"type": 3, "index": 1, "pos": 7 },
+      {"type": 3, "index": 2, "pos": 9 },
+      {"type": 2, "index": 0, "pos": 16},
+      {"type": 2, "index": 1, "pos": 18},
+      {"type": 1, "index": 0, "pos": 0 },
+      {"type": 1, "index": 1, "pos": 3 },
+      {"type": 1, "index": 2, "pos": 12},
+      {"type": 1, "index": 3, "pos": 15}
+    ]
+  },
+  {
+    "id": 16,
+    "title": "双将挡路",
+    "tiles": [
+      {"type": 9, "index": 0, "pos": 1 },
+      {"type": 3, "index": 0, "pos": 0 },
+      {"type": 3, "index": 1, "pos": 8 },
+      {"type": 3, "index": 2, "pos": 11},
+      {"type": 2, "index": 0, "pos": 9 },
+      {"type": 2, "index": 1, "pos": 13},
+      {"type": 1, "index": 0, "pos": 3 },
+      {"type": 1, "index": 1, "pos": 7 },
+      {"type": 1, "index": 2, "pos": 16},
+      {"type": 1, "index": 3, "pos": 19}
+    ]
+  },
+  {
+    "id": 17,
+    "title": "横马当关",
+    "tiles": [
+      {"type": 9, "index": 0, "pos": 1 },
+      {"type": 3, "index": 0, "pos": 0 },
+      {"type": 3, "index": 1, "pos": 3 },
+      {"type": 3, "index": 2, "pos": 13},
+      {"type": 2, "index": 0, "pos": 8 },
+      {"type": 2, "index": 1, "pos": 10},
+      {"type": 1, "index": 0, "pos": 12},
+      {"type": 1, "index": 1, "pos": 15},
+      {"type": 1, "index": 2, "pos": 16},
+      {"type": 1, "index": 3, "pos": 19}
+    ]
+  },
+  {
+    "id": 18,
+    "title": "层层设防(一)",
+    "tiles": [
+      {"type": 9, "index": 0, "pos": 1 },
+      {"type": 3, "index": 0, "pos": 0 },
+      {"type": 3, "index": 1, "pos": 3 },
+      {"type": 2, "index": 0, "pos": 9 },
+      {"type": 2, "index": 1, "pos": 13},
+      {"type": 2, "index": 2, "pos": 17},
+      {"type": 1, "index": 0, "pos": 8 },
+      {"type": 1, "index": 1, "pos": 11},
+      {"type": 1, "index": 2, "pos": 12},
+      {"type": 1, "index": 3, "pos": 15}
+    ]
+  },
+  {
+    "id": 19,
+    "title": "层层设防(二)",
+    "tiles": [
+      {"type": 9, "index": 0, "pos": 1 },
+      {"type": 3, "index": 0, "pos": 4 },
+      {"type": 3, "index": 1, "pos": 7 },
+      {"type": 2, "index": 0, "pos": 9 },
+      {"type": 2, "index": 1, "pos": 13},
+      {"type": 2, "index": 2, "pos": 17},
+      {"type": 1, "index": 0, "pos": 0 },
+      {"type": 1, "index": 1, "pos": 3 },
+      {"type": 1, "index": 2, "pos": 12},
+      {"type": 1, "index": 3, "pos": 15}
+    ]
+  },
+  {
+    "id": 20,
+    "title": "兵挡将阻",
+    "tiles": [
+      {"type": 9, "index": 0, "pos": 1 },
+      {"type": 3, "index": 0, "pos": 3 },
+      {"type": 3, "index": 1, "pos": 8 },
+      {"type": 2, "index": 0, "pos": 9 },
+      {"type": 2, "index": 1, "pos": 13},
+      {"type": 2, "index": 2, "pos": 17},
+      {"type": 1, "index": 0, "pos": 0 },
+      {"type": 1, "index": 1, "pos": 4 },
+      {"type": 1, "index": 2, "pos": 11},
+      {"type": 1, "index": 3, "pos": 15}
+    ]
+  },
+  {
+    "id": 21,
+    "title": "堵塞要道",
+    "tiles": [
+      {"type": 9, "index": 0, "pos": 1 },
+      {"type": 3, "index": 0, "pos": 8 },
+      {"type": 3, "index": 1, "pos": 9 },
+      {"type": 2, "index": 0, "pos": 10},
+      {"type": 2, "index": 1, "pos": 14},
+      {"type": 2, "index": 2, "pos": 17},
+      {"type": 1, "index": 0, "pos": 0 },
+      {"type": 1, "index": 1, "pos": 3 },
+      {"type": 1, "index": 2, "pos": 4 },
+      {"type": 1, "index": 3, "pos": 7 }
+    ]
+  },
+  {
+    "id": 22,
+    "title": "瓮中之鳖",
+    "tiles": [
+      {"type": 9, "index": 0, "pos": 1 },
+      {"type": 3, "index": 0, "pos": 0 },
+      {"type": 3, "index": 1, "pos": 3 },
+      {"type": 2, "index": 0, "pos": 8 },
+      {"type": 2, "index": 1, "pos": 10},
+      {"type": 2, "index": 2, "pos": 13},
+      {"type": 1, "index": 0, "pos": 12},
+      {"type": 1, "index": 1, "pos": 15},
+      {"type": 1, "index": 2, "pos": 16},
+      {"type": 1, "index": 3, "pos": 19}
+    ]
+  },
+  {
+    "id": 23,
+    "title": "层峦叠嶂",
+    "tiles": [
+      {"type": 9, "index": 0, "pos": 1 },
+      {"type": 3, "index": 0, "pos": 0 },
+      {"type": 3, "index": 1, "pos": 3 },
+      {"type": 2, "index": 0, "pos": 9 },
+      {"type": 2, "index": 1, "pos": 12},
+      {"type": 2, "index": 2, "pos": 14},
+      {"type": 1, "index": 0, "pos": 8 },
+      {"type": 1, "index": 1, "pos": 11},
+      {"type": 1, "index": 2, "pos": 16},
+      {"type": 1, "index": 3, "pos": 19}
+    ]
+  },
+  {
+    "id": 24,
+    "title": "水泄不通",
+    "tiles": [
+      {"type": 9, "index": 0, "pos": 1 },
+      {"type": 3, "index": 0, "pos": 0 },
+      {"type": 2, "index": 0, "pos": 8 },
+      {"type": 2, "index": 1, "pos": 10},
+      {"type": 2, "index": 2, "pos": 12},
+      {"type": 2, "index": 3, "pos": 14},
+      {"type": 1, "index": 0, "pos": 3 },
+      {"type": 1, "index": 1, "pos": 7 },
+      {"type": 1, "index": 2, "pos": 16},
+      {"type": 1, "index": 3, "pos": 19}
+    ]
+  },
+  {
+    "id": 25,
+    "title": "四路进兵",
+    "tiles": [
+      {"type": 9, "index": 0, "pos": 1 },
+      {"type": 3, "index": 0, "pos": 8 },
+      {"type": 2, "index": 0, "pos": 10},
+      {"type": 2, "index": 1, "pos": 14},
+      {"type": 2, "index": 2, "pos": 16},
+      {"type": 2, "index": 3, "pos": 18},
+      {"type": 1, "index": 0, "pos": 0 },
+      {"type": 1, "index": 1, "pos": 3 },
+      {"type": 1, "index": 2, "pos": 4 },
+      {"type": 1, "index": 3, "pos": 7 }
+    ]
+  },
+  {
+    "id": 26,
+    "title": "入地无门",
+    "tiles": [
+      {"type": 9, "index": 0, "pos": 1 },
+      {"type": 3, "index": 0, "pos": 0 },
+      {"type": 2, "index": 0, "pos": 9 },
+      {"type": 2, "index": 1, "pos": 12},
+      {"type": 2, "index": 2, "pos": 14},
+      {"type": 2, "index": 3, "pos": 17},
+      {"type": 1, "index": 0, "pos": 3 },
+      {"type": 1, "index": 1, "pos": 7 },
+      {"type": 1, "index": 2, "pos": 8 },
+      {"type": 1, "index": 3, "pos": 11}
+    ]
+  },
+  {
+    "id": 27,
+    "title": "勇闯五关",
+    "tiles": [
+      {"type": 9, "index": 0, "pos": 1 },
+      {"type": 2, "index": 0, "pos": 8 },
+      {"type": 2, "index": 1, "pos": 10},
+      {"type": 2, "index": 2, "pos": 12},
+      {"type": 2, "index": 3, "pos": 14},
+      {"type": 2, "index": 4, "pos": 17},
+      {"type": 1, "index": 0, "pos": 0 },
+      {"type": 1, "index": 1, "pos": 3 },
+      {"type": 1, "index": 2, "pos": 4 },
+      {"type": 1, "index": 3, "pos": 7 }
+    ]
+  },
+  {
+    "id": 39,
+    "title": "四面楚歌",
+    "tiles": [
+      {"type": 9, "index": 0, "pos": 5 },
+      {"type": 3, "index": 0, "pos": 0 },
+      {"type": 3, "index": 1, "pos": 3 },
+      {"type": 3, "index": 2, "pos": 11},
+      {"type": 3, "index": 3, "pos": 12},
+      {"type": 2, "index": 0, "pos": 13},
+      {"type": 1, "index": 0, "pos": 1 },
+      {"type": 1, "index": 1, "pos": 2 },
+      {"type": 1, "index": 2, "pos": 8 },
+      {"type": 1, "index": 3, "pos": 19}
+    ]
+  },
+  {
+    "id": 40,
+    "title": "前呼后拥",
+    "tiles": [
+      {"type": 9, "index": 0, "pos": 2 },
+      {"type": 2, "index": 0, "pos": 4 },
+      {"type": 2, "index": 1, "pos": 8 },
+      {"type": 2, "index": 2, "pos": 10},
+      {"type": 2, "index": 3, "pos": 12},
+      {"type": 2, "index": 4, "pos": 14},
+      {"type": 1, "index": 0, "pos": 0 },
+      {"type": 1, "index": 1, "pos": 1 },
+      {"type": 1, "index": 2, "pos": 18},
+      {"type": 1, "index": 3, "pos": 19}
+    ]
+  },
+  {
+    "id": 41,
+    "title": "兵临曹营",
+    "tiles": [
+      {"type": 9, "index": 0, "pos": 1 },
+      {"type": 3, "index": 0, "pos": 8 },
+      {"type": 3, "index": 1, "pos": 11},
+      {"type": 3, "index": 2, "pos": 13},
+      {"type": 3, "index": 3, "pos": 14},
+      {"type": 2, "index": 0, "pos": 9 },
+      {"type": 1, "index": 0, "pos": 0 },
+      {"type": 1, "index": 1, "pos": 3 },
+      {"type": 1, "index": 2, "pos": 4 },
+      {"type": 1, "index": 3, "pos": 7 }
+    ]
+  },
+  {
+    "id": 42,
+    "title": "五将逼宫",
+    "tiles": [
+      {"type": 9, "index": 0, "pos": 5 },
+      {"type": 3, "index": 0, "pos": 4 },
+      {"type": 3, "index": 1, "pos": 7 },
+      {"type": 2, "index": 0, "pos": 0 },
+      {"type": 2, "index": 1, "pos": 2 },
+      {"type": 2, "index": 2, "pos": 13},
+      {"type": 1, "index": 0, "pos": 12},
+      {"type": 1, "index": 1, "pos": 15},
+      {"type": 1, "index": 2, "pos": 16},
+      {"type": 1, "index": 3, "pos": 19}
+    ]
+  },
+  {
+    "id": 46,
+    "title": "前挡后阻",
+    "tiles": [
+      {"type": 9, "index": 0, "pos": 0 },
+      {"type": 3, "index": 0, "pos": 6 },
+      {"type": 3, "index": 1, "pos": 8 },
+      {"type": 3, "index": 2, "pos": 9 },
+      {"type": 2, "index": 0, "pos": 2 },
+      {"type": 2, "index": 1, "pos": 17},
+      {"type": 1, "index": 0, "pos": 7 },
+      {"type": 1, "index": 1, "pos": 11},
+      {"type": 1, "index": 2, "pos": 14},
+      {"type": 1, "index": 3, "pos": 15}
+    ]
+  },
+  {
+    "id": 47,
+    "title": "近在咫尺",
+    "tiles": [
+      {"type": 9, "index": 0, "pos": 14},
+      {"type": 3, "index": 0, "pos": 1 },
+      {"type": 3, "index": 1, "pos": 2 },
+      {"type": 3, "index": 2, "pos": 3 },
+      {"type": 2, "index": 0, "pos": 8 },
+      {"type": 2, "index": 1, "pos": 12},
+      {"type": 1, "index": 0, "pos": 0 },
+      {"type": 1, "index": 1, "pos": 4 },
+      {"type": 1, "index": 2, "pos": 10},
+      {"type": 1, "index": 3, "pos": 11}
+    ]
+  },
+  {
+    "id": 48,
+    "title": "走投无路",
+    "tiles": [
+      {"type": 9, "index": 0, "pos": 1 },
+      {"type": 3, "index": 0, "pos": 0 },
+      {"type": 3, "index": 1, "pos": 3 },
+      {"type": 3, "index": 2, "pos": 8 },
+      {"type": 3, "index": 3, "pos": 9 },
+      {"type": 3, "index": 4, "pos": 11},
+      {"type": 1, "index": 0, "pos": 10},
+      {"type": 1, "index": 1, "pos": 14},
+      {"type": 1, "index": 2, "pos": 16},
+      {"type": 1, "index": 3, "pos": 19}
+    ]
+  },
+  {
+    "id": 49,
+    "title": "小燕出巢",
+    "tiles": [
+      {"type": 9, "index": 0, "pos": 1 },
+      {"type": 3, "index": 0, "pos": 0 },
+      {"type": 3, "index": 1, "pos": 3 },
+      {"type": 2, "index": 0, "pos": 8 },
+      {"type": 2, "index": 1, "pos": 10},
+      {"type": 2, "index": 2, "pos": 13},
+      {"type": 1, "index": 0, "pos": 12},
+      {"type": 1, "index": 1, "pos": 15},
+      {"type": 1, "index": 2, "pos": 16},
+      {"type": 1, "index": 3, "pos": 19}
+    ]
+  },
+  {
+    "id": 50,
+    "title": "比翼横空",
+    "tiles": [
+      {"type": 9, "index": 0, "pos": 2 },
+      {"type": 3, "index": 0, "pos": 15},
+      {"type": 2, "index": 0, "pos": 0 },
+      {"type": 2, "index": 1, "pos": 4 },
+      {"type": 2, "index": 2, "pos": 8 },
+      {"type": 2, "index": 3, "pos": 10},
+      {"type": 1, "index": 0, "pos": 12},
+      {"type": 1, "index": 1, "pos": 14},
+      {"type": 1, "index": 2, "pos": 16},
+      {"type": 1, "index": 3, "pos": 18}
+    ]
+  },
+  {
+    "id": 51,
+    "title": "夹道藏兵",
+    "tiles": [
+      {"type": 9, "index": 0, "pos": 0 },
+      {"type": 3, "index": 0, "pos": 3 },
+      {"type": 2, "index": 0, "pos": 8 },
+      {"type": 2, "index": 1, "pos": 10},
+      {"type": 2, "index": 2, "pos": 12},
+      {"type": 2, "index": 3, "pos": 14},
+      {"type": 1, "index": 0, "pos": 2 },
+      {"type": 1, "index": 1, "pos": 6 },
+      {"type": 1, "index": 2, "pos": 16},
+      {"type": 1, "index": 3, "pos": 19}
+    ]
+  },
+  {
+    "id": 52,
+    "title": "屯兵东路",
+    "tiles": [
+      {"type": 9, "index": 0, "pos": 0 },
+      {"type": 3, "index": 0, "pos": 2 },
+      {"type": 3, "index": 1, "pos": 3 },
+      {"type": 3, "index": 2, "pos": 12},
+      {"type": 3, "index": 3, "pos": 13},
+      {"type": 2, "index": 0, "pos": 8 },
+      {"type": 1, "index": 0, "pos": 10},
+      {"type": 1, "index": 1, "pos": 11},
+      {"type": 1, "index": 2, "pos": 14},
+      {"type": 1, "index": 3, "pos": 15}
+    ]
+  },
+  {
+    "id": 53,
+    "title": "四将连关",
+    "tiles": [
+      {"type": 9, "index": 0, "pos": 0 },
+      {"type": 3, "index": 0, "pos": 8 },
+      {"type": 3, "index": 1, "pos": 9 },
+      {"type": 2, "index": 0, "pos": 2 },
+      {"type": 2, "index": 1, "pos": 6 },
+      {"type": 2, "index": 2, "pos": 10},
+      {"type": 1, "index": 0, "pos": 14},
+      {"type": 1, "index": 1, "pos": 15},
+      {"type": 1, "index": 2, "pos": 16},
+      {"type": 1, "index": 3, "pos": 19}
+    ]
+  },
+  {
+    "id": 54,
+    "title": "峰回路转",
+    "tiles": [
+      {"type": 9, "index": 0, "pos": 4 },
+      {"type": 3, "index": 0, "pos": 3 },
+      {"type": 3, "index": 1, "pos": 6 },
+      {"type": 3, "index": 2, "pos": 11},
+      {"type": 2, "index": 0, "pos": 13},
+      {"type": 2, "index": 1, "pos": 18},
+      {"type": 1, "index": 0, "pos": 0 },
+      {"type": 1, "index": 1, "pos": 1 },
+      {"type": 1, "index": 2, "pos": 2 },
+      {"type": 1, "index": 3, "pos": 17}
     ]
   }
 ]
