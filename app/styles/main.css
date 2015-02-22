@@ -1,5 +1,7 @@
 /* Space out content a bit */
 body {
+  min-width: 450px; /* suppose you want minimun width of 1000px */
+  width: auto !important; /* Firefox will set width as auto */
   padding-top: 20px;
   padding-bottom: 20px;
 }
