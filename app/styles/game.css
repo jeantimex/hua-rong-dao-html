@@ -69,6 +69,8 @@ span.title {
 }
 
 .tile {
+  border: 1px solid white;
+
   position: absolute;
   transition-property: top, left;
   transition-duration: 0.1s, 0.1s;
@@ -91,12 +93,13 @@ span.title {
 }
 
 .tile.thumbnail {
-  border: 1px solid #808080;
+  border: 1px solid white;
 }
 
 .t1 {
   width: 25%;
   height: 20%;
+  background-color: #2CC283 !important;
 }
 .t1.s0 {
   background-color: #EE7DA0;
@@ -117,6 +120,7 @@ span.title {
 .t2 {
   width: 50%;
   height: 20%;
+  background-color: #41A5E0 !important;
 }
 .t2.s0 {
   background-color: #46B6CA;
@@ -140,6 +144,7 @@ span.title {
 .t3 {
   width: 25%;
   height: 40%;
+  background-color: #FAC458 !important;
 }
 .t3.s0 {
   background-color: #C794AF;
