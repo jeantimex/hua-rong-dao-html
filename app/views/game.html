@@ -18,7 +18,7 @@
   </div>
 
   <div class="level-container" ng-show="isLevelsView()">
-    <div class="level-thumbnail" ng-repeat="level in levelData">
+    <div class="level-thumbnail" ng-repeat="level in levelData | limitTo:15">
       <a class="thumbnail" ng-click="selectLevel(level)">
         <div class="board-thumbnail center-block">
           <tile ng-repeat="tile in level.tiles" tile="tile" thumbnail></tile>
