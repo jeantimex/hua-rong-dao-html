@@ -35,7 +35,7 @@
 
 a.thumbnail {
   text-decoration: none;
-  height: 150px;
+  height: 140px;
 }
 
 a.thumbnail .caption p {
@@ -47,15 +47,25 @@ span.title {
   text-decoration: none;
 }
 
-.row {
-  padding: 10px;
-}
-
-#board {
+.board-game {
   width: 320px;
   height: 400px;
   background-color: white;
   position: relative;
+}
+
+.board-thumbnail {
+  width: 80px;
+  height: 100px;
+  background-color: white;
+  position: relative;
+}
+
+.level-thumbnail {
+  display: inline-block;
+  width: 100px;
+  height: 140px;
+  margin: 10px 5px;
 }
 
 .tile {
@@ -64,22 +74,99 @@ span.title {
   transition-duration: 0.1s, 0.1s;
   transition-timing-function: ease-out;
 
-   -webkit-transform: translateZ(0);
-      -moz-transform: translateZ(0);
-        -o-transform: translateZ(0);
-           transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+     -moz-transform: translateZ(0);
+       -o-transform: translateZ(0);
+          transform: translateZ(0);
+
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+       -o-box-sizing: border-box;
+          box-sizing: border-box;
+
+  -webkit-border-radius: 0 !important;
+     -moz-border-radius: 0 !important;
+       -o-border-radius: 0 !important;
+          border-radius: 0 !important;
 }
 
-.tile p {
-  color: white;
-  font-size: 1em;
-  position: relative;
-  top: 50%;
-  user-select: none;
-  -webkit-transform: translateY(-50%) translateZ(0);
-     -moz-transform: translateY(-50%) translateZ(0);
-       -o-transform: translateY(-50%) translateZ(0);
-          transform: translateY(-50%) translateZ(0);
+.tile.thumbnail {
+  border: 1px solid #808080;
 }
+
+.t1 {
+  width: 25%;
+  height: 20%;
+}
+.t1.s0 {
+  background-color: #EE7DA0;
+}
+.t1.s1 {
+  background-color: #A097BD;
+}
+.t1.s2 {
+  background-color: #F98D25;
+}
+.t1.s3 {
+  background-color: #76C2BE;
+}
+.t1.thumbnail {
+  background-color: #2CC283;
+}
+
+.t2 {
+  width: 50%;
+  height: 20%;
+}
+.t2.s0 {
+  background-color: #46B6CA;
+}
+.t2.s1 {
+  background-color: #FDB42D;
+}
+.t2.s2 {
+  background-color: #D88E68;
+}
+.t2.s3 {
+  background-color: #ED734E;
+}
+.t2.s4 {
+  background-color: #86ACBB;
+}
+.t2.thumbnail {
+  background-color: #41A5E0 !important;
+}
+
+.t3 {
+  width: 25%;
+  height: 40%;
+}
+.t3.s0 {
+  background-color: #C794AF;
+}
+.t3.s1 {
+  background-color: #2CC283;
+}
+.t3.s2 {
+  background-color: #99AB43;
+}
+.t3.s3 {
+  background-color: #FDB42D;
+}
+.t3.s4 {
+  background-color: #1D3960;
+}
+.t3.thumbnail {
+  background-color: #FAC458 !important;
+}
+
+.t9 {
+  width: 50%;
+  height: 40%;
+}
+.t9.s0 {
+  background-color: #E63A4F !important;
+}
+
 
 /* end */

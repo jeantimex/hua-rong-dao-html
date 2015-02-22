@@ -5,22 +5,20 @@
 <h4 class="text-center">{{getTitle()}}</h4>
 
 <div class="jumbotron">
-  <div id="board" class="center-block" ng-show="isGameView()">
-    <tile ng-repeat="tile in tiles" tile="tile" ng-click="moveTile(tile)">
-      <p>{{$index}}</p>
-    </tile>
+  <div class="board-game center-block" ng-show="isGameView()">
+    <tile ng-repeat="tile in tiles" tile="tile" ng-click="moveTile(tile)"></tile>
   </div>
 
-  <div id="levels" ng-show="isLevelsView()">
-    <div class="row" ng-repeat="row in levelGrid">
-      <div class="col-md-5" ng-repeat="level in row">
-        <a class="thumbnail" ng-click="selectLevel(level)">
-          <img ng-src="images/thumbnails/{{level.id}}.png" >
-          <div class="caption">
-            <p>{{level.title}}</p>
-          </div>
-        </a>
-      </div>
+  <div class="level-container" ng-show="isLevelsView()">
+    <div class="level-thumbnail" ng-repeat="level in levelData">
+      <a class="thumbnail" ng-click="selectLevel(level)">
+        <div class="board-thumbnail center-block">
+          <tile ng-repeat="tile in level.tiles" tile="tile" thumbnail></tile>
+        </div>
+        <div class="caption">
+          <p>{{level.title}}</p>
+        </div>
+      </a>
     </div>
   </div>
 </div>
@@ -28,16 +26,16 @@
 <nav ng-show="isGameView()">
   <ul class="pager">
     <li>
-      <a ng-click="back()"><span class="glyphicon glyphicon-th" aria-hidden="true"></span></a>
+      <a ng-click="back()"><span class="glyphicon glyphicon-th" aria-hidden="true"></span> Levels</a>
     </li>
     <li>
-      <a ng-click="reset()"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span></a>
+      <a ng-click="reset()"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Reset</a>
     </li>
     <li ng-show="isUserMode()">
-      <a ng-click="playAi()"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></a>
+      <a ng-click="playAi()"><span class="glyphicon glyphicon-play" aria-hidden="true"></span> Play AI</a>
     </li>
     <li ng-show="isAiMode()">
-      <a ng-click="stopAi()"><span class="glyphicon glyphicon-stop" aria-hidden="true"></span></a>
+      <a ng-click="stopAi()"><span class="glyphicon glyphicon-stop" aria-hidden="true"></span> Stop AI</a>
     </li>
     <li class="pull-right">
       {{currentStep}}

@@ -32,12 +32,10 @@ angular.module('GameApp')
   var aiSteps = [];
   var aiStepCount = 0;
 
-  var LEVEL_VIEW_TITLE = 'Select a level';
-
   // UI related
   $scope.title = '';
   $scope.tiles = [];
-  $scope.levelGrid = [];
+  $scope.levelData = [];
   $scope.currentStep = 0;
   $scope.levelPassed = false;
 
@@ -49,7 +47,7 @@ angular.module('GameApp')
     if (currentView === VIEW_GAME) {
       return $scope.title;
     } else {
-      return LEVEL_VIEW_TITLE;
+      return '';
     }
   };
 
@@ -179,7 +177,7 @@ angular.module('GameApp')
 
   LevelService.getLevelData()
     .then(function (data) {
-      $scope.levelGrid = data;
+      $scope.levelData = data;
     }, function (err) {
       $log.error(err);
     });

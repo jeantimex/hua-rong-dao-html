@@ -46,12 +46,7 @@ angular.module('GameApp')
         }
       }
 
-      var res = [];
-      for (i = 0; i < data.length; i += 5) {
-        res.push(data.slice(i, i + 5));
-      }
-
-      return res;
+      return data;
     }
   };
 
