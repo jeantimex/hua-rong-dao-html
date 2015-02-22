@@ -25,9 +25,15 @@
     <div class="container" ng-controller="AppCtrl">
       <div class="header">
         <ul class="nav nav-pills pull-right">
-          <li ng-class="{active: isActive('^/$')}"><a ng-href="#/">Home</a></li>
-          <li ng-class="{active: isActive('^/game')}"><a ng-href="#/game">Game</a></li>
-          <li ng-class="{active: isActive('^/about')}"><a ng-href="#/about">About</a></li>
+          <li ng-class="{active: isActive('^/$')}">
+            <a ng-href="#/"><span class="glyphicon glyphicon-home"></span> Home</a>
+          </li>
+          <li ng-class="{active: isActive('^/game')}">
+            <a ng-href="#/game"><span class="glyphicon glyphicon-king"></span> Game</a>
+          </li>
+          <li ng-class="{active: isActive('^/about')}">
+            <a ng-href="#/about"><span class="glyphicon glyphicon-info-sign"></span> About</a>
+          </li>
         </ul>
         <span class="title"><img src="images/seal.gif" /> 华容道</span>
       </div>
@@ -36,7 +42,7 @@
 
       <div class="footer">
         <div class="pull-left">
-          <p><span class="glyphicon glyphicon-king"></span> Developed by Yong Su</p>
+          <p><span class="glyphicon glyphicon-user"></span> Developed by Yong Su</p>
         </div>
         <div class="pull-right">
           <span><img src="images/angular.jpg" /> AngularJS + <img src="images/bootstrap.png" /> Bootstrap</span>
@@ -90,6 +96,8 @@
         <script src="scripts/services/tileService.js"></script>
         <!-- directives -->
         <script src="scripts/directives/tile.js"></script>
+        <!-- filters -->
+        <script src="scripts/filters/levelFilter.js"></script>
         <!-- endbuild -->
 </body>
 </html>

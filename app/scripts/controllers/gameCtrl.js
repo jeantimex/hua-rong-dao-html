@@ -9,9 +9,12 @@
  */
 
 angular.module('GameApp')
+.constant('levelListPageCount', 10)
+.constant('levelListActiveClass', 'active')
 .controller('GameCtrl',
-  function ($scope, $location, $route, $routeParams, $timeout, $log,
-            LevelService, TileService) {
+  function ($scope, $location, $route, $routeParams, $timeout, $log, $filter,
+            LevelService, TileService,
+            levelListPageCount, levelListActiveClass) {
 
   // Define view states
   var VIEW_GAME = 0,
@@ -38,6 +41,10 @@ angular.module('GameApp')
   $scope.levelData = [];
   $scope.currentStep = 0;
   $scope.levelPassed = false;
+
+  // Pagination
+  $scope.selectedPage = 1;
+  $scope.pageSize = levelListPageCount;
 
   // ------------------------------
   //  UI: Get title
@@ -170,6 +177,14 @@ angular.module('GameApp')
   $scope.$on('levelComplete', function() {
     $scope.levelPassed = true;
   });
+
+  $scope.selectPage = function (newPage) {
+    $scope.selectedPage = newPage;
+  }
+
+  $scope.getPageClass = function (page) {
+    return $scope.selectedPage == page ? levelListActiveClass : "";
+  }
 
   // ------------------------------
   //  Level service

@@ -18,7 +18,7 @@
   </div>
 
   <div class="level-container" ng-show="isLevelsView()">
-    <div class="level-thumbnail" ng-repeat="level in levelData | limitTo:15">
+    <div class="level-thumbnail" ng-repeat="level in levelData | range:selectedPage:pageSize">
       <a class="thumbnail" ng-click="selectLevel(level)">
         <div class="board-thumbnail center-block">
           <tile ng-repeat="tile in level.tiles" tile="tile" thumbnail></tile>
@@ -34,10 +34,11 @@
 <div class="text-center" ng-show="isLevelsView()">
   <nav>
     <ul class="pagination">
-      <li class="active"><a>1</a></li>
-      <li><a>2</a></li>
-      <li><a>3</a></li>
-      <li><a>4</a></li>
+      <li ng-repeat="page in levelData | pageCount:pageSize"
+          ng-class="getPageClass($index + 1)"
+          ng-click="selectPage($index + 1)">
+        <a>{{$index + 1}}</a>
+      </li>
     </ul>
   </nav>
 </div>
