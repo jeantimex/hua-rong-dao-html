@@ -173,6 +173,7 @@ module.exports = function (grunt) {
       dist: {
         src: [
           '<%= yeoman.dist %>/scripts/{,*/}*.js',
+          '!<%= yeoman.dist %>/scripts/workers/{,*/}*.js',
           '<%= yeoman.dist %>/styles/{,*/}*.css',
           '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
           '<%= yeoman.dist %>/styles/fonts/*'
@@ -233,6 +234,13 @@ module.exports = function (grunt) {
     // concat: {
     //   dist: {}
     // },
+
+    uglify: {
+      js: {
+        src: ['<%= yeoman.app %>/scripts/workers/tileWorker.js'],
+        dest: 'dist/scripts/workers/tileWorker.js'
+      }
+    },
 
     imagemin: {
       dist: {
@@ -308,7 +316,8 @@ module.exports = function (grunt) {
             '*.html',
             'views/{,*/}*.html',
             'images/{,*/}*.{webp}',
-            'fonts/{,*/}*.*'
+            'fonts/{,*/}*.*',
+            'data/{,*/}*.*'
           ]
         }, {
           expand: true,
