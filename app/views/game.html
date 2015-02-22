@@ -2,11 +2,19 @@
   Well Done! You have passed this level!
 </div>
 
-<h4 class="text-center">{{getTitle()}}</h4>
-
 <div class="jumbotron">
-  <div class="board-game center-block" ng-show="isGameView()">
-    <tile ng-repeat="tile in tiles" tile="tile" ng-click="moveTile(tile)"></tile>
+  <div class="board-container center-block" ng-show="isGameView()">
+    <div class="game-title">
+      <h4 class="text-center">{{getTitle()}}</h4>
+    </div>
+
+    <div class="game-wrapper">
+      <div class="board-game">
+        <tile ng-repeat="tile in tiles" tile="tile" ng-click="moveTile(tile)"></tile>
+      </div>
+    </div>
+
+    <div class="game-door"></div>
   </div>
 
   <div class="level-container" ng-show="isLevelsView()">
@@ -36,9 +44,6 @@
     </li>
     <li ng-show="isAiMode()">
       <a ng-click="stopAi()"><span class="glyphicon glyphicon-stop" aria-hidden="true"></span> Stop AI</a>
-    </li>
-    <li class="pull-right">
-      {{currentStep}}
     </li>
   </ul>
 </nav>

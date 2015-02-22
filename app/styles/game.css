@@ -47,11 +47,38 @@ span.title {
   text-decoration: none;
 }
 
+.board-container {
+  width: 340px;
+  position: relative;
+}
+
+.game-wrapper {
+  border-width: 60px 10px 10px 10px;
+  border-style: solid;
+  border-color: #536B75;
+}
+
 .board-game {
   width: 320px;
   height: 400px;
   background-color: white;
   position: relative;
+}
+
+.game-title {
+  position: absolute;
+  width: 340px;
+  top: 10px;
+  color: #F7F6F6;
+}
+
+.game-door {
+  position: absolute;
+  width: 160px;
+  height: 10px;
+  background-color: white;
+  bottom: 0px;
+  left: 90px;
 }
 
 .board-thumbnail {
