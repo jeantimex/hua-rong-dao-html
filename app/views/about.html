@@ -1,3 +1,91 @@
 <div class="container">
+  <!-- About -->
+  <h4>About the game</h4>
+  <p>华容道 is one of my favorite board games when I was a kid, I used to spend the whole day trying to solve just one level. Now I am an UI engineer, so why not ask the computer to help me out? Also, in each step where I get stuck, wouldn't it be great if the computer can take it from there and help me solve the puzzle? And that's why I made this application.</p>
+  <hr/>
 
+  <!-- Frameworks -->
+  <h4>Frameworks</h4>
+  <p>Good frameworks can help scaffold and build HTML5 project easily, I choose <a href="http://yeoman.io/">Yeoman</a> because it integrates tools like <a href="http://gruntjs.com/">Grunt</a>, <a href="http://bower.io/">Bower</a> etc and it also works smoothly with <a href="https://angularjs.org/">AngularJS</a>.</p>
+  <div class="center-block">
+    <img src="images/yeoman-tools.png" class="img-responsive center-block"/>
+  </div>
+  <p>The above frameworks are super awesome for managing front-end packages and libraries, they are like the assembly line which can efficiently improve the production. But where to find the workers? There's no doubt that AngularJS and Bootstrap are the most popular front-end libraries these days. AngularJS has so many powerful features that I didn't expect to see in JavaScript world, for example, data binding, services, factories and custom directives, filters etc. Bootstrap, in the other hand, provides easy grid layouts, a variety of componenets that normally will take us amount of time to implement by ourselves.</p>
+  <br/>
+  <div class="center-block">
+    <img src="images/angularjs-bootstrap.png" class="img-responsive center-block"/>
+  </div>
+  <br/>
+  <p>Following is the structure of our application pages, the index page links to home page, game page and the about page. In the game page there are two view states: level state and game play state.</p>
+  <div class="center-block">
+    <img src="images/page-structure.png" width="50%" height="50%" class="img-responsive center-block"/>
+  </div>
+  <hr/>
+
+  <!-- Algorithm -->
+  <h4>Algorithm</h4>
+  <p>Normally in order to solve this puzzle game, we have to use BFS(Breadth-First Search) and DFS(Depth-First Search). Let's talk about BFS first, from <a href="http://en.wikipedia.org/wiki/Breadth-first_search">Wikipedia</a>, "BFS is an algorithm for traversing or searching tree or graph data structures. It starts at the tree root (or some arbitrary node of a graph) and explores the neighbor nodes first, before moving to the next level neighbours." In our case, here is what it means, let's imagine we are at state 0:</p>
+  <div class="center-block">
+    <img src="images/state-0.png" class="img-responsive center-block"/>
+    <p class="text-center caption">state 0</p>
+  </div>
+  <p>Apparently from state 0 we can generate the following possible states by moving those green tiles:</p>
+  <div class="center-block">
+    <div class="state-thumbnail">
+      <img src="images/state-1.png" class="img-responsive center-block"/>
+      <p class="text-center caption">state 1</p>
+    </div>
+    <div class="state-thumbnail">
+      <img src="images/state-2.png" class="img-responsive center-block"/>
+      <p class="text-center caption">state 2</p>
+    </div>
+    <div class="state-thumbnail">
+      <img src="images/state-3.png" class="img-responsive center-block"/>
+      <p class="text-center caption">state 3</p>
+    </div>
+    <div class="state-thumbnail">
+      <img src="images/state-4.png" class="img-responsive center-block"/>
+      <p class="text-center caption">state 4</p>
+    </div>
+    <div class="state-thumbnail">
+      <img src="images/state-5.png" class="img-responsive center-block"/>
+      <p class="text-center caption">state 5</p>
+    </div>
+    <div class="state-thumbnail">
+      <img src="images/state-6.png" class="img-responsive center-block"/>
+      <p class="text-center caption">state 6</p>
+    </div>
+    <div class="state-thumbnail">
+      <img src="images/state-7.png" class="img-responsive center-block"/>
+      <p class="text-center caption">state 7</p>
+    </div>
+    <div class="state-thumbnail">
+      <img src="images/state-8.png" class="img-responsive center-block"/>
+      <p class="text-center caption">state 8</p>
+    </div>
+  </div>
+  <p>We called the above states are at level 1. Then from each state(1-8), we can generate new states at level 2 by moving any possible tiles. For each level and each state, we check if the puzzle is solved, if it is solved, then we found the answer. Also each state maintains a path which tracks the movements from last state, that way we can output the path and generate the animation that will move the tiles.</p>
+  <p>Now let's talk about DFS, from <a href="http://en.wikipedia.org/wiki/Depth-first_search">Wikipedia</a>, "DFS is an algorithm for traversing or searching tree or graph data structures. One starts at the root (selecting some arbitrary node as the root in the case of a graph) and explores as far as possible along each branch before backtracking." We used DFS to explore all possible paths by moving just one tile, then for each single position in the path we generate a new state.</p>
+  <p>There is another important factor we need to take into account, how to avoid duplicated or visited state? For example, from state 1 and state 3, by moving the green tile we can get the following state:</p>
+  <div class="center-block">
+    <img src="images/state-9.png" class="img-responsive center-block"/>
+    <p class="text-center caption">state 9</p>
+  </div>
+  <p>the idea is to use HashMap to track the states that have been visited. As we know, HashMap needs a key, so how to convert the state to a key? You can find the answer in the source code.</p>
+  <hr/>
+
+  <h4>Complete source</h4>
+  <p>The complete source of the game can be found on <a href="https://github.com/jeantimex/hua-rong-dao-html">Github</a>, to build the game locally, clone the source and run:</p>
+  <div class="well">
+    $ npm install<br/>
+    $ bower install<br/>
+    $ grunt serve
+  </div>
+  <hr/>
+
+  <h4>Thanks</h4>
+  <p>I spent couple of weekends on this application, so I couldn't spend too much time with my wife Jing, thank you for supporting me honey! I won't be able to complete this without you.</p>
+
+  <p>Hope you enjoy this game, and feel free to let me know if you have any question.</p>
+  <p><span class="glyphicon glyphicon-envelope"></span> <a href="mailto:jean.timex@gmail.com">jean.timex@gmail.com</a></p>
 </div>

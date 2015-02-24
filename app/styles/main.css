@@ -61,6 +61,24 @@ body {
   margin-top: 28px;
 }
 
+.bs-callout {
+  padding: 20px;
+  margin: 20px 0;
+  border: 1px solid #eee;
+  border-left-width: 5px;
+  border-radius: 3px;
+}
+
+.state-thumbnail {
+  display: inline-block;
+  width: 100px;
+  margin: 20px;
+}
+
+.state-thumbnail p.caption {
+  font-style: italic;
+}
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   /* Remove the padding we set earlier */
