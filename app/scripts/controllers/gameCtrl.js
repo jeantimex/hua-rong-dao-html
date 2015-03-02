@@ -13,7 +13,7 @@ angular.module('GameApp')
 .constant('levelListActiveClass', 'active')
 .controller('GameCtrl',
   function ($scope, $location, $route, $routeParams, $timeout, $log, $filter,
-            LevelService, TileService,
+            LevelService, TileService, localStorageService,
             levelListPageCount, levelListActiveClass) {
 
   // Define view states
@@ -185,6 +185,18 @@ angular.module('GameApp')
   $scope.getPageClass = function (page) {
     return $scope.selectedPage == page ? levelListActiveClass : "";
   }
+
+  // ------------------------------
+  //  Local storage
+  // ------------------------------
+
+  var userDataInStore = localStorageService.get('userdata');
+
+  $scope.userData = userDataInStore || {};
+
+  $scope.$watch('userData', function () {
+    localStorageService.set('userData', $scope.userData);
+  }, true);
 
   // ------------------------------
   //  Level service

@@ -9,7 +9,10 @@
  * Main module of the application.
  */
 angular
-.module('GameApp', ['ngRoute', 'LevelFilter', 'Keyboard'])
+.module('GameApp', ['ngRoute', 'LevelFilter', 'Keyboard', 'LocalStorageModule'])
+.config(['localStorageServiceProvider', function(localStorageServiceProvider) {
+  localStorageServiceProvider.setPrefix('ls');
+}])
 .config(function ($routeProvider) {
   $routeProvider
     .when('/', {
