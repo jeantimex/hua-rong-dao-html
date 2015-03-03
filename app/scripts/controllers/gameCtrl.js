@@ -180,11 +180,11 @@ angular.module('GameApp')
 
   $scope.selectPage = function (newPage) {
     $scope.selectedPage = newPage;
-  }
+  };
 
   $scope.getPageClass = function (page) {
-    return $scope.selectedPage == page ? levelListActiveClass : "";
-  }
+    return $scope.selectedPage === page ? levelListActiveClass : '';
+  };
 
   // ------------------------------
   //  Local storage

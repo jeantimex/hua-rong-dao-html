@@ -105,11 +105,11 @@ var getGrid = function (tiles) {
   return res;
 };
 
-var printGrid = function (grid) {
+/*var printGrid = function (grid) {
   for (var i = 0; i < ROW; i++) {
     console.log(grid[i]);
   }
-};
+};*/
 
 /**
  *

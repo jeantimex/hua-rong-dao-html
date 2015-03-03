@@ -1,23 +1,26 @@
 /**
  *
  */
-angular.module("LevelFilter", [])
-.filter("range", function ($filter) {
+
+'use strict';
+
+angular.module('LevelFilter', [])
+.filter('range', function ($filter) {
   return function (data, page, size) {
     if (angular.isArray(data) && angular.isNumber(page) && angular.isNumber(size)) {
-      var start_index = (page - 1) * size;
+      var startIndex = (page - 1) * size;
 
-      if (data.length < start_index) {
+      if (data.length < startIndex) {
         return [];
       } else {
-        return $filter("limitTo")(data.slice(start_index), size);
+        return $filter('limitTo')(data.slice(startIndex), size);
       }
     } else {
       return data;
     }
-  }
+  };
 })
-.filter("pageCount", function () {
+.filter('pageCount', function () {
   return function (data, size) {
     if (angular.isArray(data)) {
       var result = [];
@@ -28,5 +31,5 @@ angular.module("LevelFilter", [])
     } else {
       return data;
     }
-  }
+  };
  });
