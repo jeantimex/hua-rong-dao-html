@@ -58,6 +58,10 @@ angular.module('GameApp')
     }
   };
 
+  $scope.isLevelCompleted = function (id) {
+    return $scope.userData.hasOwnProperty(id);
+  };
+
   // ------------------------------
   //  UI: ng-show/ng-hide
   // ------------------------------
@@ -176,6 +180,9 @@ angular.module('GameApp')
 
   $scope.$on('levelComplete', function() {
     $scope.levelPassed = true;
+
+    // Save user data
+    $scope.userData[currentLevel.id] = true;
   });
 
   $scope.selectPage = function (newPage) {
@@ -190,12 +197,12 @@ angular.module('GameApp')
   //  Local storage
   // ------------------------------
 
-  var userDataInStore = localStorageService.get('userdata');
+  $scope.userData = localStorageService.get('userData') || {};
 
-  $scope.userData = userDataInStore || {};
-
-  $scope.$watch('userData', function () {
-    localStorageService.set('userData', $scope.userData);
+  $scope.$watch('userData', function (data) {
+    if (!angular.isUndefined(data) && angular.isObject(data)) {
+      localStorageService.set('userData', data);
+    }
   }, true);
 
   // ------------------------------
