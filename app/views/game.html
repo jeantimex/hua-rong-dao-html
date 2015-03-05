@@ -26,7 +26,7 @@
         <div class="caption">
           <p>{{level.title}}</p>
           <p class="level-status">
-            <span class="ng-hide glyphicon glyphicon-ok" aria-hidden="true" ng-show="isLevelCompleted(level.id)"></span>
+            <span class="glyphicon glyphicon-ok" aria-hidden="true" ng-style="getLevelStatus(level.id)"></span>
           </p>
         </div>
       </a>
