@@ -58,8 +58,8 @@ angular.module('GameApp')
     }
   };
 
-  $scope.isLevelCompleted = function (id) {
-    return $scope.userData.hasOwnProperty(id);
+  $scope.getLevelStatus = function (id) {
+    return {'visibility': $scope.userData[id] ? 'visible' : 'hidden'};
   };
 
   // ------------------------------
