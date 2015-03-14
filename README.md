@@ -4,4 +4,4 @@ See the demo at http://www.jinandsu.net/huarongdao <br/><br/>
 
 ![Huarongdao](app/images/huarongdao.png)
 
-Yong Su
+[Yong Su](http://www.jinandsu.net/)
